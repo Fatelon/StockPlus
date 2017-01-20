@@ -6,6 +6,7 @@
 
 
     <color name="mainBackground">#252525</color>
+    <color name="darkGrayBackground">#212121</color>
     <color name="whiteTextColor">#ffffff</color>
 
 </resources>

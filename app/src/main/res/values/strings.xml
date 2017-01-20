@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">StocksPLUS</string>
     <string name="login_screen_label">StocksPlus</string>
+    <string name="login_screen_hint_user">Username</string>
+    <string name="login_screen_hint_pass">Password</string>
+    <string name="login_screen_button_login">Login</string>
+
 </resources>
