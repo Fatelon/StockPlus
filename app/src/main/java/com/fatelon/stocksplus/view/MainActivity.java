@@ -29,10 +29,16 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        tv.setText(metrics.toString());
+//        tv.setText(metrics.toString());
 
         fragmentManager = getSupportFragmentManager();
         replaceFragment(new LoginScreen(), false);
+
+
+
+//        Observable ticker = Observable.interval(1, TimeUnit.SECONDS, Schedulers.io());
+//
+//        ticker.subscribe(o -> Log.d("happy", "tick " + o));
 
 
 //        Observable.just("1", "2")
@@ -50,5 +56,7 @@ public class MainActivity extends AppCompatActivity {
         if (addBackStack) transaction.addToBackStack(null);
         transaction.commit();
     }
+
+
 
 }
