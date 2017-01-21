@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TabCustomButton">
+        <attr name="tab_icon" format="integer" />
+        <attr name="nameText" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomTextView">
+        <attr name="font_type" format="integer" />
+    </declare-styleable>
+
+</resources>

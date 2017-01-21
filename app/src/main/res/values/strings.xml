@@ -5,4 +5,30 @@
     <string name="login_screen_hint_pass">Password</string>
     <string name="login_screen_button_login">Login</string>
 
+    <!-- Errors -->
+    <string name="warning">Warning</string>
+    <string name="un_or_pass_is_empty">Please input username or password</string>
+
+    <string name="failed_to_connect_title">Connection error</string>
+    <string name="failed_to_connect_message">Failed to connect with server.</string>
+    <string name="auth_error_title">Auth error</string>
+    <string name="auth_error_message">User doesn"'"t exist or login/password incorrect</string>
+
+    <!-- API -->
+    <string name="user_name">username</string>
+    <string name="user_password">password</string>
+
+    <!-- Tab -->
+    <string name="tab_market">Market</string>
+    <string name="tab_portfolio">Portfolio</string>
+    <string name="tab_watchlists">Watchlists</string>
+    <string name="tab_search">Search</string>
+    <string name="tab_news">News</string>
+    <string name="tab_edit">Edit</string>
+    <string name="tab_add">Add</string>
+
+    <!-- Settings -->
+
+    <string name="settings_logout">Logout</string>
+
 </resources>

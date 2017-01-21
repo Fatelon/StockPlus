@@ -5,11 +5,16 @@
 
     <dimen name="edit_text_padding">5dp</dimen>
 
-    <!-- login screen -->
+    <!-- Login screen -->
     <dimen name="screen_side_padding">20dp</dimen>
     <dimen name="screen_common_padding">15dp</dimen>
 
     <dimen name="login_title_text_size">23sp</dimen>
     <dimen name="login_common_text_size">18sp</dimen>
+
+    <!-- Menu -->
+    <dimen name="menu_tab_height">55dp</dimen>
+    <dimen name="menu_tab_text_size">11sp</dimen>
+
 
 </resources>

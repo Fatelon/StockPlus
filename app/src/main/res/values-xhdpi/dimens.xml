@@ -3,7 +3,17 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="edit_text_padding">6dp</dimen>
+
     <!-- login screen -->
-    <dimen name="screen_common_padding">10dp</dimen>
+    <dimen name="screen_side_padding">26dp</dimen>
+    <dimen name="screen_common_padding">20dp</dimen>
+
+    <dimen name="login_title_text_size">30sp</dimen>
+    <dimen name="login_common_text_size">24sp</dimen>
+
+    <!-- Menu -->
+    <dimen name="menu_tab_height">72dp</dimen>
+    <dimen name="menu_tab_text_size">15sp</dimen>
 
 </resources>

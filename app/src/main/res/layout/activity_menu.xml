@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black">
+
+    <FrameLayout
+        android:id="@+id/menu_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_menu_layout"
+        android:background="@color/mainBackground"/>
+    
+    <LinearLayout
+        android:id="@+id/bottom_menu_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/menu_tab_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/darkMenuBackground"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="*"
+            android:gravity="center">
+            <TableRow>
+                <com.fatelon.stocksplus.view.TabCustomButton
+                    android:id="@+id/tab_market_button"
+                    app:tab_icon="@mipmap/tab_market"
+                    app:nameText="@string/tab_market"/>
+                <com.fatelon.stocksplus.view.TabCustomButton
+                    android:id="@+id/tab_portfolio_button"
+                    app:tab_icon="@mipmap/tab_portfolio"
+                    app:nameText="@string/tab_portfolio"/>
+                <com.fatelon.stocksplus.view.TabCustomButton
+                    android:id="@+id/tab_watchlists_button"
+                    app:tab_icon="@mipmap/tab_watchlists"
+                    app:nameText="@string/tab_watchlists"/>
+                <com.fatelon.stocksplus.view.TabCustomButton
+                    android:id="@+id/tab_search_button"
+                    app:tab_icon="@mipmap/tab_search"
+                    app:nameText="@string/tab_search"/>
+                <com.fatelon.stocksplus.view.TabCustomButton
+                    android:id="@+id/tab_news_button"
+                    app:tab_icon="@mipmap/tab_news"
+                    app:nameText="@string/tab_news"/>
+            </TableRow>
+        </TableLayout>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

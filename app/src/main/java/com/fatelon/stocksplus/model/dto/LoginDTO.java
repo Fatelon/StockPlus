@@ -1,15 +1,28 @@
 package com.fatelon.stocksplus.model.dto;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by User on 20.01.2017.
  */
 
 public class LoginDTO {
 
+    @SerializedName("error")
+    @Expose
     private Integer error;
+
+    @SerializedName("errors")
+    @Expose
     private String errors;
+
+    @SerializedName("session_id")
+    @Expose
     private String sessionId;
 
+    @SerializedName("is_login")
+    @Expose
     private Integer isLogin;
 
     public Integer getError() {
