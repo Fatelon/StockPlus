@@ -1,23 +1,23 @@
 package com.fatelon.stocksplus.view;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.fatelon.stocksplus.R;
+import com.fatelon.stocksplus.view.callbacks.LoadingCallBack;
+import com.fatelon.stocksplus.view.callbacks.PressBackCallBack;
+import com.fatelon.stocksplus.view.callbacks.UserActionsCallBack;
+import com.fatelon.stocksplus.view.fragments.BaseFragmentActivity;
 import com.fatelon.stocksplus.view.fragments.LoginScreen;
+import com.fatelon.stocksplus.view.fragments.RegistrationScreen;
 
 /**
  * Created by User on 21.01.2017.
  */
 
-public class LoginActivity extends FragmentActivity implements LoadingCallBack {
-
-    private FragmentManager fragmentManager;
+public class LoginActivity extends BaseFragmentActivity implements LoadingCallBack, UserActionsCallBack, PressBackCallBack {
 
     private FrameLayout loadingIndicator;
 
@@ -25,45 +25,44 @@ public class LoginActivity extends FragmentActivity implements LoadingCallBack {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        ButterKnife.bind(this);
-
         init();
-
-
-
-        fragmentManager = getSupportFragmentManager();
-        replaceFragment(new LoginScreen(), false);
-
-
-
-    }
-
-    private void replaceFragment(Fragment fragment, boolean addBackStack) {
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.container, fragment);
-        if (addBackStack) transaction.addToBackStack(null);
-        transaction.commit();
+        replaceFragment(new LoginScreen(), false, true);
     }
 
     private void init() {
+        container = R.id.container;
         loadingIndicator = (FrameLayout) findViewById(R.id.loading_indicator);
     }
 
     @Override
     public void showLoading() {
-//        prBar.setVisibility(View.VISIBLE);
         loadingIndicator.setVisibility(View.VISIBLE);
-
     }
 
     @Override
     public void hideLoading() {
-//        prBar.setVisibility(View.GONE);
         loadingIndicator.setVisibility(View.GONE);
     }
 
-    public void login() {
+    @Override
+    public void loginAction() {
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
+    @Override
+    public void forgotPasswordAction() {
+
+    }
+
+    @Override
+    public void registrationAction() {
+        replaceFragment(new RegistrationScreen(), true, false);
+    }
+
+    @Override
+    public void onPressBack() {
+        popFragment();
     }
 }

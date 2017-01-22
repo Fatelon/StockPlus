@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.fatelon.stocksplus.R;
-import com.fatelon.stocksplus.view.SimpleDialog;
+import com.fatelon.stocksplus.view.dialogs.SimpleDialog;
 
 /**
  * Created by User on 21.01.2017.
@@ -35,6 +35,32 @@ public class ErrorHelper {
         try {
             String title = context.getResources().getString(R.string.warning);
             String message = context.getResources().getString(R.string.un_or_pass_is_empty);
+            SimpleDialog.showSimpleDialog(context, title, message);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /*
+    * Registration filled incorrect
+    * */
+    public static void registrationFillingIncorrect(Context context) {
+        try {
+            String title = context.getResources().getString(R.string.fields_filled_incorrect_title);
+            String message = context.getResources().getString(R.string.fields_filled_incorrect_message);
+            SimpleDialog.showSimpleDialog(context, title, message);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /*
+    * Registration error server response
+    * */
+    public static void registrationErrorFromServer(Context context) {
+        try {
+            String title = context.getResources().getString(R.string.register_error_title);
+            String message = context.getResources().getString(R.string.register_error_message);
             SimpleDialog.showSimpleDialog(context, title, message);
         } catch (Exception ex) {
             ex.printStackTrace();

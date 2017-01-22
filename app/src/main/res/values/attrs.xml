@@ -6,8 +6,17 @@
         <attr name="nameText" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="CustomMarketItem">
+        <attr name="market_item_icon" format="integer" />
+        <attr name="market_item_name" format="string" />
+    </declare-styleable>
+
     <declare-styleable name="CustomTextView">
         <attr name="font_type" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomTitle">
+        <attr name="main_text" format="string" />
     </declare-styleable>
 
 </resources>

@@ -26,8 +26,11 @@ public class Market extends BaseMenuFragment {
     }
 
     private void init(View view) {
-        settingsButton = (ImageView) view.findViewById(R.id.settings_button);
+        settingsButton = (ImageView) view.findViewById(R.id.open_settings_button);
         settingsButton.setOnClickListener(v -> onClickSettingsButton(v));
+//        ArrayAdapter adapter = new ArrayAdapter<String>(context, R.layout.market_list_view, mobileArray);
+//        ListView listView = (ListView) view.findViewById(R.id.signals_list_view);
+//        listView.setAdapter(adapter);
     }
 
     private void onClickSettingsButton(View v) {

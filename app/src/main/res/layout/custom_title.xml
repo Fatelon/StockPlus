@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/darkMenuBackground"
+        android:stretchColumns="*"
+        android:gravity="center">
+        <TableRow>
+            <ImageView
+                android:id="@+id/custom_title_back_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/screen_side_padding"
+                android:paddingRight="@dimen/screen_side_padding"
+                android:paddingTop="@dimen/edit_text_padding"
+                android:paddingBottom="@dimen/edit_text_padding"
+                android:layout_gravity="left|center_vertical"
+                android:src="@mipmap/backbutton"/>
+            <com.fatelon.stocksplus.view.customviews.CustomTextView
+                android:id="@+id/custom_title_main_text"
+                android:textSize="@dimen/login_title_text_size"
+                android:textColor="@color/whiteTextColor"
+                android:layout_gravity="center"
+                app:font_type="4"/>
+            <ImageView
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/backbutton"/>
+        </TableRow>
+    </TableLayout>

@@ -1,6 +1,7 @@
 package com.fatelon.stocksplus.model.api;
 
 import com.fatelon.stocksplus.model.dto.LoginDTO;
+import com.fatelon.stocksplus.model.dto.RegistrationDTO;
 
 import java.util.Map;
 
@@ -17,10 +18,11 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("?action=login_user")
-    Observable<LoginDTO> postLogin( @FieldMap Map<String, String> userParams);
+    Observable<LoginDTO> postLogin(@FieldMap Map<String, String> userParams);
 
-//    public static final Retrofit retrofit = new Retrofit.Builder()
-//            .baseUrl(BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build();
+    @FormUrlEncoded
+    @POST("?action=register_user")
+    Observable<RegistrationDTO> postRegistration(@FieldMap Map<String, String> userParams);
+
+
 }

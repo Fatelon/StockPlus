@@ -27,23 +27,23 @@
             android:stretchColumns="*"
             android:gravity="center">
             <TableRow>
-                <com.fatelon.stocksplus.view.TabCustomButton
+                <com.fatelon.stocksplus.view.customviews.TabCustomButton
                     android:id="@+id/tab_market_button"
                     app:tab_icon="@mipmap/tab_market"
                     app:nameText="@string/tab_market"/>
-                <com.fatelon.stocksplus.view.TabCustomButton
+                <com.fatelon.stocksplus.view.customviews.TabCustomButton
                     android:id="@+id/tab_portfolio_button"
                     app:tab_icon="@mipmap/tab_portfolio"
                     app:nameText="@string/tab_portfolio"/>
-                <com.fatelon.stocksplus.view.TabCustomButton
+                <com.fatelon.stocksplus.view.customviews.TabCustomButton
                     android:id="@+id/tab_watchlists_button"
                     app:tab_icon="@mipmap/tab_watchlists"
                     app:nameText="@string/tab_watchlists"/>
-                <com.fatelon.stocksplus.view.TabCustomButton
+                <com.fatelon.stocksplus.view.customviews.TabCustomButton
                     android:id="@+id/tab_search_button"
                     app:tab_icon="@mipmap/tab_search"
                     app:nameText="@string/tab_search"/>
-                <com.fatelon.stocksplus.view.TabCustomButton
+                <com.fatelon.stocksplus.view.customviews.TabCustomButton
                     android:id="@+id/tab_news_button"
                     app:tab_icon="@mipmap/tab_news"
                     app:nameText="@string/tab_news"/>

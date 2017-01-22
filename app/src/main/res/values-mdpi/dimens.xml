@@ -6,11 +6,13 @@
     <dimen name="edit_text_padding">3dp</dimen>
 
     <!-- login screen -->
-    <dimen name="screen_side_padding">14dp</dimen>
+    <dimen name="screen_side_padding">10dp</dimen>
     <dimen name="screen_common_padding">10dp</dimen>
+    <dimen name="login_button_side_padding">15dp</dimen>
+    <dimen name="login_button_vertical_padding">1dp</dimen>
 
     <dimen name="login_title_text_size">15sp</dimen>
-    <dimen name="login_common_text_size">12sp</dimen>
+    <dimen name="login_common_text_size">10sp</dimen>
 
     <!-- Menu -->
     <dimen name="menu_tab_height">37dp</dimen>

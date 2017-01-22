@@ -1,5 +1,6 @@
 package com.fatelon.stocksplus.view;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -8,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.fatelon.stocksplus.R;
+import com.fatelon.stocksplus.view.customviews.TabCustomButton;
 import com.fatelon.stocksplus.view.fragments.Market;
 import com.fatelon.stocksplus.view.fragments.News;
 import com.fatelon.stocksplus.view.fragments.Portfolio;
@@ -19,6 +21,8 @@ import com.fatelon.stocksplus.view.fragments.Watchlists;
  */
 
 public class MenuActivity extends FragmentActivity {
+
+    public static Activity menuActivity;
 
     private Market marketFrag;
     private Portfolio portfolioFrag;
@@ -38,8 +42,15 @@ public class MenuActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        menuActivity = this;
         init();
         replaceFragment(new Market(), false);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        menuActivity = null;
     }
 
     private void init() {

@@ -1,22 +1,53 @@
 <resources>
     <string name="app_name">StocksPLUS</string>
     <string name="login_screen_label">StocksPlus</string>
+
+    <!-- Registration-->
+    <string name="registration_title">Registration</string>
+    <string name="registration_first_name">Firstname</string>
+    <string name="registration_last_name">Lastname</string>
+    <string name="registration_email">Email</string>
+    <string name="registration_phone">Phone</string>
+    <string name="registration_user_name">Username</string>
+    <string name="registration_password">Password</string>
+    <string name="registration_confirm_password">Confirm password</string>
+    <string name="registration_sign_up">Sign up</string>
+    <string name="registration_register_title">Register</string>
+    <string name="registration_register_message">You are registered</string>
+
+    <!-- Login -->
+    <string name="login_screen_save_me">Save me:</string>
     <string name="login_screen_hint_user">Username</string>
     <string name="login_screen_hint_pass">Password</string>
     <string name="login_screen_button_login">Login</string>
+    <string name="login_screen_forgot_pass">Forgot your password?</string>
+    <string name="login_screen_new_user">New user? Register</string>
+
+    <!-- Dialogs -->
+    <string name="positive_button_text">OK</string>
 
     <!-- Errors -->
     <string name="warning">Warning</string>
     <string name="un_or_pass_is_empty">Please input username or password</string>
-
+    <string name="fields_filled_incorrect_title">Fields filled incorrect</string>
+    <string name="fields_filled_incorrect_message">Not all fields filled or password not matched.</string>
     <string name="failed_to_connect_title">Connection error</string>
     <string name="failed_to_connect_message">Failed to connect with server.</string>
     <string name="auth_error_title">Auth error</string>
     <string name="auth_error_message">User doesn"'"t exist or login/password incorrect</string>
+    <string name="register_error_title">Register error</string>
+    <string name="register_error_message">Fields filled incorrect or current user already exist</string>
 
     <!-- API -->
+        <!-- Login API -->
     <string name="user_name">username</string>
     <string name="user_password">password</string>
+        <!-- Registration API -->
+    <string name="f_name">fname</string>
+    <string name="l_name">lname</string>
+    <string name="email">email</string>
+    <string name="phone">phone</string>
+
 
     <!-- Tab -->
     <string name="tab_market">Market</string>
@@ -30,5 +61,22 @@
     <!-- Settings -->
 
     <string name="settings_logout">Logout</string>
+
+    <!-- Market -->
+    <string name="market_sub_title_signals">Signals</string>
+    <string name="market_sub_title_events">Events</string>
+
+    <string name="market_item_top_gainers">Top Gainers</string>
+    <string name="market_item_top_losers">Top Losers</string>
+    <string name="market_item_new_high">New High</string>
+    <string name="market_item_new_low">New Low</string>
+    <string name="market_item_unusual_volume">Unusual volume</string>
+    <string name="market_item_most_volatile">Most Volatile</string>
+    <string name="market_item_earnings">Earnings</string>
+    <string name="market_item_conference_calls">Conference Call</string>
+    <string name="market_item_dividends">Dividends</string>
+    <string name="market_item_splits">Splits</string>
+    <string name="market_item_ipo">IPO</string>
+
 
 </resources>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.fatelon.stocksplus.R;
+import com.fatelon.stocksplus.helpers.PreferencesHelper;
 
 /**
  * Created by User on 21.01.2017.
@@ -38,12 +39,11 @@ public class Settings extends FragmentActivity {
     }
 
     private void onClickLogoutButton(View v) {
-        this.finish();
+        PreferencesHelper.storeIsUserLogin(this, false);
+//        if (MenuActivity.menuActivity != null) MenuActivity.menuActivity.finish();
         Intent intent = new Intent(this, LoginActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-
+        finish();
     }
 
     private void onClickBackButton() {
@@ -56,4 +56,5 @@ public class Settings extends FragmentActivity {
         if (addBackStack) transaction.addToBackStack(null);
         transaction.commit();
     }
+
 }

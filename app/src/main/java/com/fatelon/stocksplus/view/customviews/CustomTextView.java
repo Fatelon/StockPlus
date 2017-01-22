@@ -1,4 +1,4 @@
-package com.fatelon.stocksplus.view;
+package com.fatelon.stocksplus.view.customviews;
 
 import android.content.Context;
 import android.content.res.TypedArray;

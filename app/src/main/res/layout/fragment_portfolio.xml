@@ -19,13 +19,13 @@
                     android:paddingLeft="@dimen/screen_side_padding"
                     android:layout_gravity="left|center_vertical"
                     android:textSize="@dimen/login_common_text_size"
-                    android:textColor="@color/white"
+                    android:textColor="@color/whiteTextColor"
                     android:text="@string/tab_edit"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/login_title_text_size"
-                    android:textColor="@color/white"
+                    android:textColor="@color/whiteTextColor"
                     android:layout_gravity="center"
                     android:text="@string/tab_portfolio"/>
                 <TextView
@@ -34,7 +34,7 @@
                     android:paddingRight="@dimen/screen_side_padding"
                     android:layout_gravity="right|center_vertical"
                     android:textSize="@dimen/login_common_text_size"
-                    android:textColor="@color/white"
+                    android:textColor="@color/whiteTextColor"
                     android:text="@string/tab_add"/>
             </TableRow>
         </TableLayout>

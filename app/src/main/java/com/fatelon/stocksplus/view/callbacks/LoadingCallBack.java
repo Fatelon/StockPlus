@@ -1,4 +1,4 @@
-package com.fatelon.stocksplus.view;
+package com.fatelon.stocksplus.view.callbacks;
 
 /**
  * Created by User on 21.01.2017.
