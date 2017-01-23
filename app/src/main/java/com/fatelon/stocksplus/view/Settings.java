@@ -40,10 +40,15 @@ public class Settings extends FragmentActivity {
 
     private void onClickLogoutButton(View v) {
         PreferencesHelper.storeIsUserLogin(this, false);
-//        if (MenuActivity.menuActivity != null) MenuActivity.menuActivity.finish();
+
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
+        try {
+            if (MenuActivity.menuActivity != null) MenuActivity.menuActivity.finish();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void onClickBackButton() {

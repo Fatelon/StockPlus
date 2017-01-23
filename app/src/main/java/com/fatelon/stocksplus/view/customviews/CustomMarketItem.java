@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fatelon.stocksplus.R;
-import com.fatelon.stocksplus.view.callbacks.PressBackCallBack;
 
 /**
  * Created by User on 22.01.2017.
@@ -21,7 +23,7 @@ public class CustomMarketItem extends LinearLayout {
 
     private TextView marketItemName;
 
-    private PressBackCallBack pressBackCallBack = null;
+    private FrameLayout itemClickFlash;
 
     public CustomMarketItem(Context context) {
         super(context);
@@ -44,6 +46,29 @@ public class CustomMarketItem extends LinearLayout {
         inflate(getContext(), R.layout.market_list_view, this);
         this.marketItemIcon = (ImageView)findViewById(R.id.market_item_icon);
         this.marketItemName = (TextView) findViewById(R.id.market_item_name_text);
+        itemClickFlash = (FrameLayout) findViewById(R.id.item_click_flash);
+        this.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        itemClickFlash.setVisibility(View.VISIBLE);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        itemClickFlash.setVisibility(View.GONE);
+                        break;
+                    case MotionEvent.ACTION_OUTSIDE:
+                        itemClickFlash.setVisibility(View.GONE);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                        itemClickFlash.setVisibility(View.GONE);
+                        break;
+                    default :
+//                        itemClickFlash.setVisibility(View.GONE);
+                }
+                return false;
+            }
+        });
     }
 
     private void setAttr(Context context, AttributeSet attrs) {

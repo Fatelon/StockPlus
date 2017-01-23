@@ -20,7 +20,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/screen_side_padding"
                     android:layout_gravity="left|center_vertical"
-                    android:textSize="@dimen/login_common_text_size"
+                    android:textSize="@dimen/item_text_size"
                     android:textColor="@color/whiteTextColor"
                     android:text="@string/tab_edit"
                     app:font_type="4"/>
@@ -123,46 +123,74 @@
                     android:layout_height="wrap_content"
                     android:text="@string/market_sub_title_signals"
                     android:textSize="@dimen/login_title_text_size"
-                    app:font_type="1"/>
+                    android:textColor="@color/whiteTextColor"
+                    app:font_type="4"/>
 
             </LinearLayout>
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:orientation="vertical"
-               android:gravity="center"
-               android:dividerPadding="3dp"
-               android:showDividers="middle"
-               android:divider="@drawable/market_item_separator">
+               android:orientation="vertical">
                <com.fatelon.stocksplus.view.customviews.CustomMarketItem
+                   android:id="@+id/market_item_top_gainers_elem"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   app:market_item_icon="@mipmap/tab_settings"
-                   app:market_item_name="@string/market_item_top_gainers" />
+                   app:market_item_icon="@mipmap/top_gainers"
+                   app:market_item_name="@string/market_item_top_gainers"/>
+               <View android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="@color/lightGrayBackground"
+                   android:layout_marginLeft="@dimen/screen_side_padding"
+                   android:layout_marginRight="@dimen/screen_side_padding"/>
                <com.fatelon.stocksplus.view.customviews.CustomMarketItem
+                   android:id="@+id/market_item_top_losers_elem"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   app:market_item_icon="@mipmap/tab_settings"
+                   app:market_item_icon="@mipmap/top_losers"
                    app:market_item_name="@string/market_item_top_losers" />
+               <View android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="@color/lightGrayBackground"
+                   android:layout_marginLeft="@dimen/screen_side_padding"
+                   android:layout_marginRight="@dimen/screen_side_padding"/>
                <com.fatelon.stocksplus.view.customviews.CustomMarketItem
+                   android:id="@+id/market_item_new_high_elem"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   app:market_item_icon="@mipmap/tab_settings"
+                   app:market_item_icon="@mipmap/new_high"
                    app:market_item_name="@string/market_item_new_high" />
+               <View android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="@color/lightGrayBackground"
+                   android:layout_marginLeft="@dimen/screen_side_padding"
+                   android:layout_marginRight="@dimen/screen_side_padding"/>
                <com.fatelon.stocksplus.view.customviews.CustomMarketItem
+                   android:id="@+id/market_item_new_low_elem"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   app:market_item_icon="@mipmap/tab_settings"
+                   app:market_item_icon="@mipmap/new_low"
                    app:market_item_name="@string/market_item_new_low" />
+               <View android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="@color/lightGrayBackground"
+                   android:layout_marginLeft="@dimen/screen_side_padding"
+                   android:layout_marginRight="@dimen/screen_side_padding"/>
                <com.fatelon.stocksplus.view.customviews.CustomMarketItem
+                   android:id="@+id/market_item_unusual_volume_elem"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   app:market_item_icon="@mipmap/tab_settings"
+                   app:market_item_icon="@mipmap/unusual_volume"
                    app:market_item_name="@string/market_item_unusual_volume" />
+               <View android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="@color/lightGrayBackground"
+                   android:layout_marginLeft="@dimen/screen_side_padding"
+                   android:layout_marginRight="@dimen/screen_side_padding"/>
                <com.fatelon.stocksplus.view.customviews.CustomMarketItem
+                   android:id="@+id/market_item_most_volatile_elem"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   app:market_item_icon="@mipmap/tab_settings"
+                   app:market_item_icon="@mipmap/most_volatile"
                    app:market_item_name="@string/market_item_most_volatile" />
 
            </LinearLayout>
@@ -175,11 +203,73 @@
                 <com.fatelon.stocksplus.view.customviews.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/whiteTextColor"
                     android:text="@string/market_sub_title_events"
                     android:textSize="@dimen/login_title_text_size"
                     app:font_type="1"/>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <com.fatelon.stocksplus.view.customviews.CustomMarketItem
+                    android:id="@+id/market_item_earnings_elem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:market_item_icon="@mipmap/event_earnings"
+                    app:market_item_name="@string/market_item_earnings" />
+                <View android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lightGrayBackground"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomMarketItem
+                    android:id="@+id/market_item_conference_calls_elem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:market_item_icon="@mipmap/event_confcall"
+                    app:market_item_name="@string/market_item_conference_calls" />
+                <View android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lightGrayBackground"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomMarketItem
+                    android:id="@+id/market_item_dividends_elem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    app:market_item_icon="@mipmap/event_dividends"
+                    app:market_item_name="@string/market_item_dividends" />
+                <View android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lightGrayBackground"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomMarketItem
+                    android:id="@+id/market_item_splits_elem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:market_item_icon="@mipmap/event_splits"
+                    app:market_item_name="@string/market_item_splits" />
+                <View android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lightGrayBackground"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomMarketItem
+                    android:id="@+id/market_item_ipo_elem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:market_item_icon="@mipmap/event_ipo"
+                    app:market_item_name="@string/market_item_ipo" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_tab_height"
+                android:background="@color/darkGrayBackground"/>
         </LinearLayout>
 
     </ScrollView>

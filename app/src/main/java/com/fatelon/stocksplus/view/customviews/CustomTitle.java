@@ -3,6 +3,7 @@ package com.fatelon.stocksplus.view.customviews;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ public class CustomTitle extends LinearLayout {
     private ImageView customTitleBackButton;
 
     private TextView customTitleMainText;
+
+    private CustomTextView rightTextView;
 
     private PressBackCallBack pressBackCallBack = null;
 
@@ -39,6 +42,14 @@ public class CustomTitle extends LinearLayout {
         setAttr(context, attrs);
     }
 
+    public void setRightTextVisible() {
+        rightTextView.setVisibility(View.VISIBLE);
+    }
+
+    public void setRightTextInvisible() {
+        rightTextView.setVisibility(View.INVISIBLE);
+    }
+
     public void setPressBackCallBack(Context context) {
         this.pressBackCallBack = (PressBackCallBack) context;
     }
@@ -48,6 +59,7 @@ public class CustomTitle extends LinearLayout {
         this.customTitleBackButton = (ImageView)findViewById(R.id.custom_title_back_button);
         this.customTitleMainText = (TextView) findViewById(R.id.custom_title_main_text);
         this.customTitleBackButton.setOnClickListener(v -> {if (pressBackCallBack != null) pressBackCallBack.onPressBack();});
+        this.rightTextView = (CustomTextView) findViewById(R.id.custom_title_right_text);
     }
 
     private void setAttr(Context context, AttributeSet attrs) {

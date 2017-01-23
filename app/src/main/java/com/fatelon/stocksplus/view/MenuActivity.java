@@ -2,25 +2,24 @@ package com.fatelon.stocksplus.view;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.fatelon.stocksplus.R;
+import com.fatelon.stocksplus.view.callbacks.OpenNewFragmentCallBack;
 import com.fatelon.stocksplus.view.customviews.TabCustomButton;
+import com.fatelon.stocksplus.view.fragments.BaseFragmentActivity;
 import com.fatelon.stocksplus.view.fragments.Market;
 import com.fatelon.stocksplus.view.fragments.News;
 import com.fatelon.stocksplus.view.fragments.Portfolio;
 import com.fatelon.stocksplus.view.fragments.Search;
+import com.fatelon.stocksplus.view.fragments.SignalsFragment;
 import com.fatelon.stocksplus.view.fragments.Watchlists;
 
 /**
  * Created by User on 21.01.2017.
  */
 
-public class MenuActivity extends FragmentActivity {
+    public class MenuActivity extends BaseFragmentActivity implements OpenNewFragmentCallBack {
 
     public static Activity menuActivity;
 
@@ -29,8 +28,6 @@ public class MenuActivity extends FragmentActivity {
     private Watchlists watchlistsFrag;
     private Search searchFrag;
     private News newsFrag;
-
-    private FragmentManager fragmentManager;
 
     private TabCustomButton tabMarketButton;
     private TabCustomButton tabPortfolioButton;
@@ -44,7 +41,10 @@ public class MenuActivity extends FragmentActivity {
         setContentView(R.layout.activity_menu);
         menuActivity = this;
         init();
-        replaceFragment(new Market(), false);
+        if (marketFrag == null) {
+            marketFrag = new Market();
+            replaceFragment(marketFrag, false, true);
+        }
     }
 
     @Override
@@ -54,7 +54,7 @@ public class MenuActivity extends FragmentActivity {
     }
 
     private void init() {
-        fragmentManager = getSupportFragmentManager();
+        container = R.id.menu_container;
         tabMarketButton = (TabCustomButton) findViewById(R.id.tab_market_button);
         tabMarketButton.setOnClickListener(v -> tabMarketButtonClick(v));
         tabPortfolioButton = (TabCustomButton) findViewById(R.id.tab_portfolio_button);
@@ -69,33 +69,35 @@ public class MenuActivity extends FragmentActivity {
 
     private void tabMarketButtonClick(View v) {
         if (marketFrag == null) marketFrag = new Market();
-        replaceFragment(marketFrag, false);
+        replaceFragment(marketFrag, false, true);
     }
 
     private void tabPortfolioButtonClick(View v) {
         if (portfolioFrag == null) portfolioFrag = new Portfolio();
-        replaceFragment(portfolioFrag, false);
+        replaceFragment(portfolioFrag, false, true);
     }
 
     private void tabWatchlistsButtonClick(View v) {
         if (watchlistsFrag == null) watchlistsFrag = new Watchlists();
-        replaceFragment(watchlistsFrag, false);
+        replaceFragment(watchlistsFrag, false, true);
     }
 
     private void tabSearchButtonClick(View v) {
         if (searchFrag == null) searchFrag = new Search();
-        replaceFragment(searchFrag, false);
+        replaceFragment(searchFrag, false, true);
     }
 
     private void tabNewsButtonClick(View v) {
         if (newsFrag == null) newsFrag = new News();
-        replaceFragment(newsFrag, false);
+        replaceFragment(newsFrag, false, true);
     }
 
-    private void replaceFragment(Fragment fragment, boolean addBackStack) {
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.menu_container, fragment);
-        if (addBackStack) transaction.addToBackStack(null);
-        transaction.commit();
+    @Override
+    public void openNewFragment(Integer number) {
+        SignalsFragment signalsFragment = new SignalsFragment();
+        Bundle args = new Bundle();
+        args.putInt("number", number);
+        signalsFragment.setArguments(args);
+        replaceFragment(signalsFragment, false, true);
     }
 }

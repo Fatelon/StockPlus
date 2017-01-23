@@ -16,6 +16,7 @@
                 android:paddingRight="@dimen/screen_side_padding"
                 android:paddingTop="@dimen/edit_text_padding"
                 android:paddingBottom="@dimen/edit_text_padding"
+                android:background="#f00"
                 android:layout_gravity="left|center_vertical"
                 android:src="@mipmap/backbutton"/>
             <com.fatelon.stocksplus.view.customviews.CustomTextView
@@ -23,11 +24,18 @@
                 android:textSize="@dimen/login_title_text_size"
                 android:textColor="@color/whiteTextColor"
                 android:layout_gravity="center"
+                android:background="#0f0"
                 app:font_type="4"/>
-            <ImageView
+            <com.fatelon.stocksplus.view.customviews.CustomTextView
                 android:visibility="invisible"
+                android:id="@+id/custom_title_right_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/backbutton"/>
+                android:paddingRight="@dimen/screen_side_padding"
+                android:layout_gravity="right|center_vertical"
+                android:textSize="@dimen/item_text_size"
+                android:background="#00f"
+                app:font_type="4"
+                android:text="@string/tab_sort"/>
         </TableRow>
     </TableLayout>

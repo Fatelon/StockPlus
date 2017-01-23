@@ -65,17 +65,21 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
      * @param popPreviousState true to pop the previous state from the back stack; false otherwise.
      */
     public void replaceFragment(Fragment fragment, boolean addToBackStack, boolean popPreviousState) {
-        final FragmentManager fragmentManager = getSupportFragmentManager();
-        if (popPreviousState) {
-            fragmentManager.popBackStack();
-        }
+        try {
+            final FragmentManager fragmentManager = getSupportFragmentManager();
+            if (popPreviousState) {
+                fragmentManager.popBackStack();
+            }
 
-        final FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(container, fragment);
-        if (addToBackStack) {
-            ft.addToBackStack(null);
+            final FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(container, fragment);
+            if (addToBackStack) {
+                ft.addToBackStack(null);
+            }
+            ft.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        ft.commit();
     }
 
     /**

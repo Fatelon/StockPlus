@@ -18,4 +18,10 @@
     <dimen name="menu_tab_height">37dp</dimen>
     <dimen name="menu_tab_text_size">7sp</dimen>
 
+    <!-- Market -->
+    <dimen name="item_height">33dp</dimen>
+    <dimen name="item_text_size">13sp</dimen>
+
+    <dimen name="screen_double_side_padding">20dp</dimen>
+
 </resources>
