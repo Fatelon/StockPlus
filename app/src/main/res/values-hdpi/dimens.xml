@@ -22,6 +22,10 @@
     <dimen name="item_height">50dp</dimen>
     <dimen name="item_text_size">20sp</dimen>
 
+        <!-- Signal -->
+    <dimen name="signal_item_text_size">16sp</dimen>
+
     <dimen name="screen_double_side_padding">30dp</dimen>
+
 
 </resources>

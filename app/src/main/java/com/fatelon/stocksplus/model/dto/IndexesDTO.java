@@ -3,18 +3,20 @@ package com.fatelon.stocksplus.model.dto;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by User on 24.01.2017.
  */
 
-public class SignalsDTO {
+public class IndexesDTO {
 
     @SerializedName("error")
     @Expose
     private Integer error;
-    @SerializedName("signals")
+    @SerializedName("items")
     @Expose
-    private Signals signals;
+    private List<IndexesItem> items = null;
     @SerializedName("session_id")
     @Expose
     private String sessionId;
@@ -33,12 +35,12 @@ public class SignalsDTO {
         this.error = error;
     }
 
-    public Signals getSignals() {
-        return signals;
+    public List<IndexesItem> getItems() {
+        return items;
     }
 
-    public void setSignals(Signals signals) {
-        this.signals = signals;
+    public void setItems(List<IndexesItem> items) {
+        this.items = items;
     }
 
     public String getSessionId() {

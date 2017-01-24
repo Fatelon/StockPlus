@@ -19,9 +19,14 @@
     <dimen name="menu_tab_text_size">15sp</dimen>
 
     <!-- Market -->
-    <dimen name="item_height">650dp</dimen>
+    <dimen name="item_height">65dp</dimen>
     <dimen name="item_text_size">26sp</dimen>
 
+    <!-- Signal -->
+    <dimen name="signal_item_text_size">20sp</dimen>
+
     <dimen name="screen_double_side_padding">39dp</dimen>
+
+    <dimen name="indexes_layout_width">130dp</dimen>
 
 </resources>

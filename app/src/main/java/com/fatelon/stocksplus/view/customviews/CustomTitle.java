@@ -54,11 +54,22 @@ public class CustomTitle extends LinearLayout {
         this.pressBackCallBack = (PressBackCallBack) context;
     }
 
+    public void setCustomText(String customText) {
+        this.customTitleMainText.setText(customText);
+    }
+
     private void init() {
         inflate(getContext(), R.layout.custom_title, this);
         this.customTitleBackButton = (ImageView)findViewById(R.id.custom_title_back_button);
         this.customTitleMainText = (TextView) findViewById(R.id.custom_title_main_text);
-        this.customTitleBackButton.setOnClickListener(v -> {if (pressBackCallBack != null) pressBackCallBack.onPressBack();});
+        this.customTitleBackButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (pressBackCallBack != null)
+                    pressBackCallBack.onPressBack();
+            }
+        });
+//        this.customTitleBackButton.setOnClickListener(v -> {if (pressBackCallBack != null) pressBackCallBack.onPressBack();});
         this.rightTextView = (CustomTextView) findViewById(R.id.custom_title_right_text);
     }
 

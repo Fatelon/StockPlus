@@ -47,7 +47,13 @@
     <string name="l_name">lname</string>
     <string name="email">email</string>
     <string name="phone">phone</string>
-
+        <!-- Signal types-->
+    <string name="signal_type_topgainers">topgainers</string>
+    <string name="signal_type_toplosers">toplosers</string>
+    <string name="signal_type_newhigh">newhigh</string>
+    <string name="signal_type_newlow">newlow</string>
+    <string name="signal_type_unusualvolume">unusualvolume</string>
+    <string name="signal_type_mostvolatile">mostvolatile</string>
 
     <!-- Tab -->
     <string name="tab_market">Market</string>
@@ -57,10 +63,11 @@
     <string name="tab_news">News</string>
     <string name="tab_edit">Edit</string>
     <string name="tab_add">Add</string>
+    <string name="tab_done">Done</string>
     <string name="tab_sort">Sort</string>
 
     <!-- Settings -->
-
+    <string name="settings_title">Settings</string>
     <string name="settings_logout">Logout</string>
 
     <!-- Market -->
@@ -79,5 +86,9 @@
     <string name="market_item_splits">Splits</string>
     <string name="market_item_ipo">IPO</string>
 
+        <!-- Indexes -->
+    <string name="index_type_1_name">S&amp;P500</string>
+    <string name="index_type_2_name">NASDAQ</string>
+    <string name="index_type_3_name">DOW</string>
 
 </resources>

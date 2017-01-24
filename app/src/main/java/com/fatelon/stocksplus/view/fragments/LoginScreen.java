@@ -109,6 +109,7 @@ public class LoginScreen extends BaseFragment {
             m.put(context.getResources().getString(R.string.user_name), uName);
             m.put(context.getResources().getString(R.string.user_password), uPass);
             ApiInterface apiInterface = ApiModule.getApiInterface();
+
 //            Observable<LoginDTO> obs = ai.postLogin(m);
 //            Subscription subscription =
             apiInterface.postLogin(m).subscribeOn(Schedulers.io()).
@@ -141,6 +142,7 @@ public class LoginScreen extends BaseFragment {
                             }
                         }
                     });
+
         }
     }
 

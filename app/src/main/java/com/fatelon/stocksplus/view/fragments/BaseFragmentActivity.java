@@ -8,12 +8,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.fatelon.stocksplus.R;
+import com.fatelon.stocksplus.view.callbacks.PressBackCallBack;
 
 /**
  * Created by User on 22.01.2017.
  */
 
-public abstract class BaseFragmentActivity extends FragmentActivity {
+public abstract class BaseFragmentActivity extends FragmentActivity implements PressBackCallBack {
 
     protected int container = R.id.base_fragment_container;
 
@@ -66,11 +67,15 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
      */
     public void replaceFragment(Fragment fragment, boolean addToBackStack, boolean popPreviousState) {
         try {
-            final FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentManager fragmentManager = getSupportFragmentManager();
             if (popPreviousState) {
-                fragmentManager.popBackStack();
+//                fragmentManager.popBackStackImmediate();
+//                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                for(int i = 0; i < fragmentManager.getBackStackEntryCount(); ++i) {
+                    fragmentManager.popBackStack();
+                }
             }
-
+            fragmentManager = getSupportFragmentManager();
             final FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.replace(container, fragment);
             if (addToBackStack) {
@@ -95,5 +100,10 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
     public void popFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.popBackStack();
+    }
+
+    @Override
+    public void onPressBack() {
+        popFragment();
     }
 }

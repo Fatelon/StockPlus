@@ -1,5 +1,6 @@
 package com.fatelon.stocksplus.model.api;
 
+import com.fatelon.stocksplus.model.dto.IndexesDTO;
 import com.fatelon.stocksplus.model.dto.LoginDTO;
 import com.fatelon.stocksplus.model.dto.RegistrationDTO;
 import com.fatelon.stocksplus.model.dto.SignalsDTO;
@@ -10,7 +11,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -27,6 +28,9 @@ public interface ApiInterface {
     @POST("?action=register_user")
     Observable<RegistrationDTO> postRegistration(@FieldMap Map<String, String> userParams);
 
-    @GET("?action=get_signals_list&type={type}")
-    Observable<SignalsDTO> getSignals(@Path("type") String type);
+    @GET("?action=get_signals_list")
+    Observable<SignalsDTO> getSignals(@Query("type") String type);
+
+    @GET("?action=get_3_indexes")
+    Observable<IndexesDTO> getIndexes();
 }

@@ -11,34 +11,34 @@ public class OneSignalDTO {
 
     @SerializedName("ticker")
     @Expose
-    private String ticker;
+    private String ticker = "";
     @SerializedName("company")
     @Expose
-    private String company;
+    private String company = "";
     @SerializedName("sector")
     @Expose
-    private String sector;
+    private String sector = "";
     @SerializedName("industry")
     @Expose
-    private String industry;
+    private String industry = "";
     @SerializedName("country")
     @Expose
-    private String country;
+    private String country = "";
     @SerializedName("market_cap")
     @Expose
-    private String marketCap;
+    private String marketCap = "";
     @SerializedName("pe")
     @Expose
-    private String pe;
+    private String pe = "";
     @SerializedName("price")
     @Expose
-    private String price;
+    private String price = "";
     @SerializedName("change")
     @Expose
-    private String change;
+    private String change = "";
     @SerializedName("volume")
     @Expose
-    private String volume;
+    private String volume = "";
 
     public String getTicker() {
         return ticker;

@@ -11,16 +11,19 @@ import android.widget.Button;
 
 import com.fatelon.stocksplus.R;
 import com.fatelon.stocksplus.helpers.PreferencesHelper;
+import com.fatelon.stocksplus.view.callbacks.PressBackCallBack;
+import com.fatelon.stocksplus.view.customviews.CustomTitle;
 
 /**
  * Created by User on 21.01.2017.
  */
 
-public class Settings extends FragmentActivity {
+public class Settings extends FragmentActivity implements PressBackCallBack {
 
     private FragmentManager fragmentManager;
 
-    private Button backButton;
+    private CustomTitle customTitle;
+
     private Button logoutButton;
 
     @Override
@@ -32,10 +35,10 @@ public class Settings extends FragmentActivity {
 
     private void init() {
         fragmentManager = getSupportFragmentManager();
-        backButton = (Button) findViewById(R.id.b_button);
-        backButton.setOnClickListener(v -> onClickBackButton());
         logoutButton = (Button) findViewById(R.id.logout_button);
         logoutButton.setOnClickListener(v -> onClickLogoutButton(v));
+        customTitle = (CustomTitle) findViewById(R.id.settings_title);
+        customTitle.setPressBackCallBack(this);
     }
 
     private void onClickLogoutButton(View v) {
@@ -51,10 +54,6 @@ public class Settings extends FragmentActivity {
         }
     }
 
-    private void onClickBackButton() {
-        this.finish();
-    }
-
     private void replaceFragment(Fragment fragment, boolean addBackStack) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.settings_container, fragment);
@@ -62,4 +61,8 @@ public class Settings extends FragmentActivity {
         transaction.commit();
     }
 
+    @Override
+    public void onPressBack() {
+        this.finish();
+    }
 }

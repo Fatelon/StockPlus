@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBackground">
 
-    <com.fatelon.stocksplus.view.customviews.CustomTitle
-        android:id="@+id/signals_fragment_title"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/menu_tab_height"
-        app:main_text="Title"/>
+        android:layout_height="match_parent">
+        <com.fatelon.stocksplus.view.customviews.CustomTitle
+            android:id="@+id/signals_fragment_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_tab_height"
+            app:main_text="Title"/>
 
-</LinearLayout>
+        <ListView
+            android:id="@+id/signals_list_view"
+            android:padding="@dimen/edit_text_padding"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:background="@color/mainBackground"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/signals_loading_indicator"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.7"
+            android:clickable="true"
+            android:background="@color/black"/>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+</FrameLayout>

@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.fatelon.stocksplus.R;
 import com.fatelon.stocksplus.view.callbacks.OpenNewFragmentCallBack;
+import com.fatelon.stocksplus.view.callbacks.PressBackCallBack;
 import com.fatelon.stocksplus.view.customviews.TabCustomButton;
 import com.fatelon.stocksplus.view.fragments.BaseFragmentActivity;
 import com.fatelon.stocksplus.view.fragments.Market;
@@ -19,7 +20,7 @@ import com.fatelon.stocksplus.view.fragments.Watchlists;
  * Created by User on 21.01.2017.
  */
 
-    public class MenuActivity extends BaseFragmentActivity implements OpenNewFragmentCallBack {
+    public class MenuActivity extends BaseFragmentActivity implements OpenNewFragmentCallBack, PressBackCallBack {
 
     public static Activity menuActivity;
 
@@ -41,10 +42,11 @@ import com.fatelon.stocksplus.view.fragments.Watchlists;
         setContentView(R.layout.activity_menu);
         menuActivity = this;
         init();
-        if (marketFrag == null) {
-            marketFrag = new Market();
-            replaceFragment(marketFrag, false, true);
-        }
+        tabMarketButtonClick(tabMarketButton);
+    }
+
+    public void onBackPressed() {
+
     }
 
     @Override
@@ -68,28 +70,65 @@ import com.fatelon.stocksplus.view.fragments.Watchlists;
     }
 
     private void tabMarketButtonClick(View v) {
-        if (marketFrag == null) marketFrag = new Market();
-        replaceFragment(marketFrag, false, true);
+        v.setClickable(false);
+        if (marketFrag == null) {
+            marketFrag = new Market();
+            replaceFragment(marketFrag, false, false);
+        } else {
+            popFragment();
+        }
+        setBlue((TabCustomButton)v);
     }
 
     private void tabPortfolioButtonClick(View v) {
+        v.setClickable(false);
         if (portfolioFrag == null) portfolioFrag = new Portfolio();
-        replaceFragment(portfolioFrag, false, true);
+        replaceFragment(portfolioFrag, !tabMarketButton.isClickable(), false);
+        setBlue((TabCustomButton)v);
     }
 
     private void tabWatchlistsButtonClick(View v) {
+        v.setClickable(false);
         if (watchlistsFrag == null) watchlistsFrag = new Watchlists();
-        replaceFragment(watchlistsFrag, false, true);
+        replaceFragment(watchlistsFrag, !tabMarketButton.isClickable(), false);
+        setBlue((TabCustomButton)v);
     }
 
     private void tabSearchButtonClick(View v) {
+        v.setClickable(false);
         if (searchFrag == null) searchFrag = new Search();
-        replaceFragment(searchFrag, false, true);
+        replaceFragment(searchFrag, !tabMarketButton.isClickable(), false);
+        setBlue((TabCustomButton)v);
     }
 
     private void tabNewsButtonClick(View v) {
+        v.setClickable(false);
         if (newsFrag == null) newsFrag = new News();
-        replaceFragment(newsFrag, false, true);
+        replaceFragment(newsFrag, !tabMarketButton.isClickable(), false);
+        setBlue((TabCustomButton)v);
+    }
+
+    private void setBlue(TabCustomButton tabCustomButton) {
+        updateAllButtons();
+        tabCustomButton.setClickable(false);
+        tabCustomButton.makeBlue(this);
+    }
+
+    private boolean needPopPrevSate() {
+        return tabMarketButton.isClickable();
+    }
+
+    private void updateAllButtons() {
+        tabMarketButton.setClickable(true);
+        tabMarketButton.makeWhite(this);
+        tabPortfolioButton.setClickable(true);
+        tabPortfolioButton.makeWhite(this);
+        tabWatchlistsButton.setClickable(true);
+        tabWatchlistsButton.makeWhite(this);
+        tabSearchButton.setClickable(true);
+        tabSearchButton.makeWhite(this);
+        tabNewsButton.setClickable(true);
+        tabNewsButton.makeWhite(this);
     }
 
     @Override
@@ -98,6 +137,7 @@ import com.fatelon.stocksplus.view.fragments.Watchlists;
         Bundle args = new Bundle();
         args.putInt("number", number);
         signalsFragment.setArguments(args);
-        replaceFragment(signalsFragment, false, true);
+        replaceFragment(signalsFragment, true, false);
     }
+
 }

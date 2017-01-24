@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/mainBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -113,6 +114,34 @@
                 android:layout_gravity="center"
                 android:text="@string/tab_market"
                 app:font_type="7"/>
+
+            <TableLayout
+                android:paddingTop="@dimen/screen_double_side_padding"
+                android:paddingBottom="@dimen/screen_double_side_padding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/darkGrayBackground"
+                android:gravity="center">
+                <TableRow>
+                    <com.fatelon.stocksplus.view.customviews.CustomIndex
+                        android:id="@+id/index_type_1"
+                        android:layout_weight="1"
+                        android:layout_marginRight="1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <com.fatelon.stocksplus.view.customviews.CustomIndex
+                        android:id="@+id/index_type_2"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <com.fatelon.stocksplus.view.customviews.CustomIndex
+                        android:id="@+id/index_type_3"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </TableRow>
+            </TableLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_tab_height"
@@ -136,7 +165,8 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    app:market_item_icon="@mipmap/top_gainers"
-                   app:market_item_name="@string/market_item_top_gainers"/>
+                   app:market_item_name="@string/market_item_top_gainers"
+                   app:font_type="5"/>
                <View android:layout_width="match_parent"
                    android:layout_height="1dp"
                    android:background="@color/lightGrayBackground"
@@ -147,7 +177,8 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    app:market_item_icon="@mipmap/top_losers"
-                   app:market_item_name="@string/market_item_top_losers" />
+                   app:market_item_name="@string/market_item_top_losers"
+                   app:font_type="5"/>
                <View android:layout_width="match_parent"
                    android:layout_height="1dp"
                    android:background="@color/lightGrayBackground"
@@ -158,7 +189,8 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    app:market_item_icon="@mipmap/new_high"
-                   app:market_item_name="@string/market_item_new_high" />
+                   app:market_item_name="@string/market_item_new_high"
+                   app:font_type="5"/>
                <View android:layout_width="match_parent"
                    android:layout_height="1dp"
                    android:background="@color/lightGrayBackground"
@@ -169,7 +201,8 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    app:market_item_icon="@mipmap/new_low"
-                   app:market_item_name="@string/market_item_new_low" />
+                   app:market_item_name="@string/market_item_new_low"
+                   app:font_type="5"/>
                <View android:layout_width="match_parent"
                    android:layout_height="1dp"
                    android:background="@color/lightGrayBackground"
@@ -180,7 +213,8 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    app:market_item_icon="@mipmap/unusual_volume"
-                   app:market_item_name="@string/market_item_unusual_volume" />
+                   app:market_item_name="@string/market_item_unusual_volume"
+                   app:font_type="5"/>
                <View android:layout_width="match_parent"
                    android:layout_height="1dp"
                    android:background="@color/lightGrayBackground"
@@ -191,7 +225,8 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    app:market_item_icon="@mipmap/most_volatile"
-                   app:market_item_name="@string/market_item_most_volatile" />
+                   app:market_item_name="@string/market_item_most_volatile"
+                   app:font_type="5"/>
 
            </LinearLayout>
 
@@ -219,7 +254,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:market_item_icon="@mipmap/event_earnings"
-                    app:market_item_name="@string/market_item_earnings" />
+                    app:market_item_name="@string/market_item_earnings"
+                    app:font_type="5"/>
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/lightGrayBackground"
@@ -230,7 +266,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:market_item_icon="@mipmap/event_confcall"
-                    app:market_item_name="@string/market_item_conference_calls" />
+                    app:market_item_name="@string/market_item_conference_calls"
+                    app:font_type="5"/>
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/lightGrayBackground"
@@ -242,7 +279,8 @@
                     android:layout_height="wrap_content"
 
                     app:market_item_icon="@mipmap/event_dividends"
-                    app:market_item_name="@string/market_item_dividends" />
+                    app:market_item_name="@string/market_item_dividends"
+                    app:font_type="5"/>
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/lightGrayBackground"
@@ -253,7 +291,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:market_item_icon="@mipmap/event_splits"
-                    app:market_item_name="@string/market_item_splits" />
+                    app:market_item_name="@string/market_item_splits"
+                    app:font_type="5"/>
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/lightGrayBackground"
@@ -264,7 +303,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:market_item_icon="@mipmap/event_ipo"
-                    app:market_item_name="@string/market_item_ipo" />
+                    app:market_item_name="@string/market_item_ipo"
+                    app:font_type="5"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

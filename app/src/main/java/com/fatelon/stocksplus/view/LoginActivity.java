@@ -7,7 +7,6 @@ import android.widget.FrameLayout;
 
 import com.fatelon.stocksplus.R;
 import com.fatelon.stocksplus.view.callbacks.LoadingCallBack;
-import com.fatelon.stocksplus.view.callbacks.PressBackCallBack;
 import com.fatelon.stocksplus.view.callbacks.UserActionsCallBack;
 import com.fatelon.stocksplus.view.fragments.BaseFragmentActivity;
 import com.fatelon.stocksplus.view.fragments.LoginScreen;
@@ -17,7 +16,7 @@ import com.fatelon.stocksplus.view.fragments.RegistrationScreen;
  * Created by User on 21.01.2017.
  */
 
-public class LoginActivity extends BaseFragmentActivity implements LoadingCallBack, UserActionsCallBack, PressBackCallBack {
+public class LoginActivity extends BaseFragmentActivity implements LoadingCallBack, UserActionsCallBack {
 
     private FrameLayout loadingIndicator;
 
@@ -61,8 +60,4 @@ public class LoginActivity extends BaseFragmentActivity implements LoadingCallBa
         replaceFragment(new RegistrationScreen(), true, false);
     }
 
-    @Override
-    public void onPressBack() {
-        popFragment();
-    }
 }

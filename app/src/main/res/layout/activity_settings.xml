@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <FrameLayout
         android:visibility="gone"
@@ -12,18 +14,21 @@
 
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <Button
-            android:id="@+id/b_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back"/>
+        <com.fatelon.stocksplus.view.customviews.CustomTitle
+            android:id="@+id/settings_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_tab_height"
+            app:main_text="@string/settings_title"/>
 
         <Button
             android:id="@+id/logout_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/screen_side_padding"
+            android:background="@color/red"
             android:text="@string/settings_logout"/>
     </LinearLayout>
 
