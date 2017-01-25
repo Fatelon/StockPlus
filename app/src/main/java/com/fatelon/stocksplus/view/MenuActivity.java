@@ -11,13 +11,14 @@ import com.fatelon.stocksplus.view.customviews.TabCustomButton;
 import com.fatelon.stocksplus.view.fragments.BaseFragmentActivity;
 import com.fatelon.stocksplus.view.fragments.Market;
 import com.fatelon.stocksplus.view.fragments.News;
+import com.fatelon.stocksplus.view.fragments.NewsesWebViewFragment;
 import com.fatelon.stocksplus.view.fragments.Portfolio;
 import com.fatelon.stocksplus.view.fragments.Search;
 import com.fatelon.stocksplus.view.fragments.SignalsFragment;
 import com.fatelon.stocksplus.view.fragments.Watchlists;
 
 /**
- * Created by User on 21.01.2017.
+ * Created by Fatelon on 21.01.2017.
  */
 
     public class MenuActivity extends BaseFragmentActivity implements OpenNewFragmentCallBack, PressBackCallBack {
@@ -138,6 +139,17 @@ import com.fatelon.stocksplus.view.fragments.Watchlists;
         args.putInt("number", number);
         signalsFragment.setArguments(args);
         replaceFragment(signalsFragment, true, false);
+    }
+
+    @Override
+    public void openNewFragmentWithString(Integer number, String param) {
+        if (number >= 0 && number <= 2) {
+            NewsesWebViewFragment newsesWebViewFragment = new NewsesWebViewFragment();
+            Bundle args = new Bundle();
+            args.putString("url", param);
+            newsesWebViewFragment.setArguments(args);
+            replaceFragment(newsesWebViewFragment, true, false);
+        }
     }
 
 }

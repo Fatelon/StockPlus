@@ -80,8 +80,9 @@
     <string name="market_item_new_low">New Low</string>
     <string name="market_item_unusual_volume">Unusual volume</string>
     <string name="market_item_most_volatile">Most Volatile</string>
+
     <string name="market_item_earnings">Earnings</string>
-    <string name="market_item_conference_calls">Conference Call</string>
+    <string name="market_item_conference_calls">Conference calls</string>
     <string name="market_item_dividends">Dividends</string>
     <string name="market_item_splits">Splits</string>
     <string name="market_item_ipo">IPO</string>

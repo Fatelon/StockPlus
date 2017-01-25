@@ -13,7 +13,7 @@ import com.fatelon.stocksplus.view.fragments.LoginScreen;
 import com.fatelon.stocksplus.view.fragments.RegistrationScreen;
 
 /**
- * Created by User on 21.01.2017.
+ * Created by Fatelon on 21.01.2017.
  */
 
 public class LoginActivity extends BaseFragmentActivity implements LoadingCallBack, UserActionsCallBack {

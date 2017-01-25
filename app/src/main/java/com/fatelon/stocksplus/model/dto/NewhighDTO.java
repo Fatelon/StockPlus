@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by User on 23.01.2017.
+ * Created by Fatelon on 23.01.2017.
  */
 
 public class NewhighDTO {

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import com.fatelon.stocksplus.R;
 
 /**
- * Created by User on 21.01.2017.
+ * Created by Fatelon on 21.01.2017.
  */
 
 public class Portfolio extends BaseMenuFragment {

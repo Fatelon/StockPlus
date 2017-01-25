@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 
 /**
- * Created by User on 19.01.2017.
+ * Created by Fatelon on 19.01.2017.
  */
 
 public class BaseFragment extends Fragment {

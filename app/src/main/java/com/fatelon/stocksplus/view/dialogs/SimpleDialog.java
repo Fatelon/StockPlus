@@ -7,7 +7,7 @@ import android.support.v7.app.AlertDialog;
 import com.fatelon.stocksplus.view.callbacks.SimpleDialogCallback;
 
 /**
- * Created by User on 21.01.2017.
+ * Created by Fatelon on 21.01.2017.
  */
 
 public class SimpleDialog {

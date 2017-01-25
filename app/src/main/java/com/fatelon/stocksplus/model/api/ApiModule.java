@@ -11,7 +11,7 @@ import rx.schedulers.Schedulers;
 import static com.fatelon.stocksplus.Constants.BASE_URL;
 
 /**
- * Created by User on 20.01.2017.
+ * Created by Fatelon on 20.01.2017.
  */
 
 public class ApiModule {

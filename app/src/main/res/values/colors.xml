@@ -7,8 +7,9 @@
     <color name="black">#000000</color>
     <color name="yellow">#e6ce00</color>
     <color name="blue">#698cff</color>
-    <color name="red">#ff5959</color>
-    <color name="green">#76ff89</color>
+    <color name="red">#ff6372</color>
+    <!--<color name="green">#76ff89</color>-->
+    <color name="green">#91d85c</color>
 
     <color name="darkMenuBackground">#131313</color>
     <color name="mainBackground">#252525</color>
@@ -17,5 +18,12 @@
     <color name="whiteTextColor">#ffffff</color>
 
     <color name="indexes_background">#555555</color>
+    <color name="light_indexes_background">#777777</color>
+
+    <color name="colored_stripe_conference">#f26522</color>
+    <color name="colored_stripe_dividends">#00a651</color>
+    <color name="colored_stripe_earnings">#39d7ff</color>
+    <color name="colored_stripe_splits">#fb4cff</color>
+    <color name="colored_stripe_ipo">#5071ff</color>
 
 </resources>

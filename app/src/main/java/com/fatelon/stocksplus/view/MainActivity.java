@@ -6,6 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.fatelon.stocksplus.R;
 
+/**
+ * Created by Fatelon on 21.01.2017.
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/edit_text_padding">
+
+    <com.fatelon.stocksplus.view.customviews.CustomTextView
+        android:id="@+id/custom_quote_title"
+        android:layout_marginTop="@dimen/edit_text_padding"
+        android:textSize="@dimen/signal_item_text_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/whiteTextColor"
+        app:font_type="2"/>
+
+    <com.fatelon.stocksplus.view.customviews.CustomTextView
+        android:id="@+id/custom_quote_price"
+        android:layout_marginTop="@dimen/edit_text_padding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/whiteTextColor"
+        app:font_type="1"/>
+
+    <com.fatelon.stocksplus.view.customviews.CustomTextView
+        android:id="@+id/custom_quote_chage_num"
+        android:layout_marginTop="@dimen/edit_text_padding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:font_type="1"/>
+
+    <com.fatelon.stocksplus.view.customviews.CustomTextView
+        android:id="@+id/custom_quote_change_percent"
+        android:layout_marginTop="@dimen/edit_text_padding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:font_type="1"/>
+
+    <com.fatelon.stocksplus.view.customviews.CustomTextView
+        android:visibility="gone"
+        android:id="@+id/custom_quote_delete"
+        android:layout_marginTop="@dimen/edit_text_padding"
+        android:textColor="@color/red"
+        android:text="X"
+        android:layout_gravity="right"
+        android:paddingBottom="@dimen/edit_text_padding"
+        android:paddingRight="@dimen/edit_text_padding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:font_type="1"/>
+</LinearLayout>

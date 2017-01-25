@@ -4,13 +4,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.TextView;
 
 import com.fatelon.stocksplus.R;
 
 /**
- * Created by User on 21.01.2017.
+ * Created by Fatelon on 21.01.2017.
  */
 
 public class CustomTextView extends TextView {

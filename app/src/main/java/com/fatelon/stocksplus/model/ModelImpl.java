@@ -4,7 +4,7 @@ import com.fatelon.stocksplus.model.api.ApiInterface;
 import com.fatelon.stocksplus.model.api.ApiModule;
 
 /**
- * Created by User on 19.01.2017.
+ * Created by Fatelon on 19.01.2017.
  */
 
 public class ModelImpl implements Model {

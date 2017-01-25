@@ -9,7 +9,7 @@ import com.fatelon.stocksplus.R;
 import com.fatelon.stocksplus.model.dto.IndexesItem;
 
 /**
- * Created by User on 24.01.2017.
+ * Created by Fatelon on 24.01.2017.
  */
 
 public class CustomIndex extends LinearLayout {
@@ -40,7 +40,7 @@ public class CustomIndex extends LinearLayout {
         customIndexTitle.setText(title);
     }
 
-    public void setIndex( IndexesItem indexesItem) {
+    public void setIndex(IndexesItem indexesItem) {
         customIndexPrice.setText(indexesItem.getPrice());
         customIndexChageNum.setText(indexesItem.getChageNum());
         customIndexChangePercent.setText(indexesItem.getChangePercent());

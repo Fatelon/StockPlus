@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:weightSum="2">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <View android:layout_width="@dimen/colored_stripe_width"
+                    android:layout_height="@dimen/colored_stripe_height"
+                    android:background="@color/colored_stripe_conference"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/market_item_conference_calls"
+                    android:textSize="@dimen/login_common_text_size"
+                    android:textColor="@color/whiteTextColor"
+                    app:font_type="1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <View android:layout_width="@dimen/colored_stripe_width"
+                    android:layout_height="@dimen/colored_stripe_height"
+                    android:background="@color/colored_stripe_dividends"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/market_item_dividends"
+                    android:textSize="@dimen/login_common_text_size"
+                    android:textColor="@color/whiteTextColor"
+                    app:font_type="1"/>
+            </LinearLayout>
+
+        </TableRow>
+
+        <TableRow
+            android:weightSum="2">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <View android:layout_width="@dimen/colored_stripe_width"
+                    android:layout_height="@dimen/colored_stripe_height"
+                    android:background="@color/colored_stripe_earnings"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/market_item_earnings"
+                    android:textSize="@dimen/login_common_text_size"
+                    android:textColor="@color/whiteTextColor"
+                    app:font_type="1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <View android:layout_width="@dimen/colored_stripe_width"
+                    android:layout_height="@dimen/colored_stripe_height"
+                    android:background="@color/colored_stripe_splits"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/market_item_splits"
+                    android:textSize="@dimen/login_common_text_size"
+                    android:textColor="@color/whiteTextColor"
+                    app:font_type="1"/>
+            </LinearLayout>
+
+        </TableRow>
+
+        <TableRow
+            android:weightSum="2">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <View android:layout_width="@dimen/colored_stripe_width"
+                    android:layout_height="@dimen/colored_stripe_height"
+                    android:background="@color/colored_stripe_ipo"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/market_item_ipo"
+                    android:textSize="@dimen/login_common_text_size"
+                    android:textColor="@color/whiteTextColor"
+                    app:font_type="1"/>
+            </LinearLayout>
+
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

@@ -30,7 +30,7 @@ import rx.schedulers.Schedulers;
 import static com.fatelon.stocksplus.Constants.SERVER_MESSAGE_ERROR;
 
 /**
- * Created by User on 19.01.2017.
+ * Created by Fatelon on 19.01.2017.
  */
 
 public class LoginScreen extends BaseFragment {
@@ -149,6 +149,7 @@ public class LoginScreen extends BaseFragment {
     private void doLogin(LoginDTO user) {
         try {
             String sessionId = user.getSessionId();
+            Integer userId = user.getIsLogin();
             if (saveMeCheckBox.isChecked()) {
                 String uName = userName.getText().toString();
                 String uPass = userPass.getText().toString();
@@ -157,6 +158,7 @@ public class LoginScreen extends BaseFragment {
                 PreferencesHelper.storeIsUserLogin(context, true);
             }
             PreferencesHelper.storeUserSessionId(context, sessionId);
+            PreferencesHelper.storeUserId(context, userId);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

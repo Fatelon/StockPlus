@@ -15,7 +15,7 @@ import com.fatelon.stocksplus.view.callbacks.PressBackCallBack;
 import com.fatelon.stocksplus.view.customviews.CustomTitle;
 
 /**
- * Created by User on 21.01.2017.
+ * Created by Fatelon on 21.01.2017.
  */
 
 public class Settings extends FragmentActivity implements PressBackCallBack {

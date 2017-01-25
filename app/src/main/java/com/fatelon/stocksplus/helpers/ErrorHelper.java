@@ -7,7 +7,7 @@ import com.fatelon.stocksplus.R;
 import com.fatelon.stocksplus.view.dialogs.SimpleDialog;
 
 /**
- * Created by User on 21.01.2017.
+ * Created by Fatelon on 21.01.2017.
  */
 
 public class ErrorHelper {

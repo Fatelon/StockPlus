@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/menu_tab_height">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/mainBackground">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/menu_tab_height"
+            android:layout_marginLeft="@dimen/edit_text_padding">
+            <TableRow>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:id="@+id/custom_news_item_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/whiteTextColor"
+                    android:textSize="@dimen/news_item_text_size"
+                    app:font_type="5"/>
+            </TableRow>
+            <TableRow>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:id="@+id/custom_news_item_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/whiteTextColor"
+                    android:textSize="@dimen/news_item_text_size"
+                    app:font_type="1"/>
+            </TableRow>
+        </TableLayout>
+
+        <ImageView
+            android:id="@+id/custom_news_item_right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/screen_double_side_padding"
+            android:src="@mipmap/right_arrow"/>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/news_item_click_flash"
+        android:visibility="gone"
+        android:alpha="0.6"
+        android:background="@color/whiteTextColor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</FrameLayout>

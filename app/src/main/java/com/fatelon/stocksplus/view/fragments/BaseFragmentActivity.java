@@ -11,7 +11,7 @@ import com.fatelon.stocksplus.R;
 import com.fatelon.stocksplus.view.callbacks.PressBackCallBack;
 
 /**
- * Created by User on 22.01.2017.
+ * Created by Fatelon on 22.01.2017.
  */
 
 public abstract class BaseFragmentActivity extends FragmentActivity implements PressBackCallBack {

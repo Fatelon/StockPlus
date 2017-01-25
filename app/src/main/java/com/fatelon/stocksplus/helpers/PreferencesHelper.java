@@ -5,12 +5,14 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 /**
- * Created by User on 21.01.2017.
+ * Created by Fatelon on 21.01.2017.
  */
 
 public class PreferencesHelper {
 
     private static final String KEY_USER_SESSION_ID = "user_session_id";
+
+    private static final String KEY_USER_ID = "user_id";
 
     private static final String KEY_IS_USER_LOGIN = "is_user_login";
 
@@ -36,6 +38,16 @@ public class PreferencesHelper {
     public static String getUserSessionId(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         return preferences.getString(KEY_USER_SESSION_ID, "");
+    }
+
+    public static void storeUserId(Context context, Integer userId) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        preferences.edit().putInt(KEY_USER_ID, userId).apply();
+    }
+
+    public static Integer getUserId(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        return preferences.getInt(KEY_USER_ID, -1);
     }
 
     public static void storeUserName(Context context, String name) {

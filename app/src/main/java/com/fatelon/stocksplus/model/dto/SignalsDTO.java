@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by User on 24.01.2017.
+ * Created by Fatelon on 24.01.2017.
  */
 
 public class SignalsDTO {

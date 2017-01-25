@@ -4,7 +4,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * Created by User on 22.01.2017.
+ * Created by Fatelon on 22.01.2017.
  */
 
 public class SimpleOnTouchButtonHelper implements View.OnTouchListener {

@@ -26,7 +26,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by User on 23.01.2017.
+ * Created by Fatelon on 23.01.2017.
  */
 
 public class SignalsFragment extends BaseSignalsFragment {

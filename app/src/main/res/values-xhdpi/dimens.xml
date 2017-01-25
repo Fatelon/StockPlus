@@ -24,9 +24,12 @@
 
     <!-- Signal -->
     <dimen name="signal_item_text_size">20sp</dimen>
-
     <dimen name="screen_double_side_padding">39dp</dimen>
 
-    <dimen name="indexes_layout_width">130dp</dimen>
+    <!-- News -->
+    <dimen name="news_item_text_size">18sp</dimen>
+
+    <dimen name="colored_stripe_width">30dp</dimen>
+    <dimen name="colored_stripe_height">4dp</dimen>
 
 </resources>

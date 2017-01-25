@@ -14,7 +14,7 @@ import com.fatelon.stocksplus.model.dto.OneSignalDTO;
 import java.util.List;
 
 /**
- * Created by User on 24.01.2017.
+ * Created by Fatelon on 24.01.2017.
  */
 
 public class CustomSplitListViewAdapter extends ArrayAdapter<OneSignalDTO> {

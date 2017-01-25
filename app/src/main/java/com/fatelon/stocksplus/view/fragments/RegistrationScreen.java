@@ -30,7 +30,7 @@ import rx.schedulers.Schedulers;
 import static com.fatelon.stocksplus.Constants.SERVER_MESSAGE_ERROR;
 
 /**
- * Created by User on 20.01.2017.
+ * Created by Fatelon on 20.01.2017.
  */
 
 public class RegistrationScreen extends BaseFragment implements SimpleDialogCallback {

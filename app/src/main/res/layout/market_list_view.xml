@@ -39,7 +39,7 @@
     <FrameLayout
         android:id="@+id/item_click_flash"
         android:visibility="gone"
-        android:alpha="0.7"
+        android:alpha="0.6"
         android:background="@color/whiteTextColor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
