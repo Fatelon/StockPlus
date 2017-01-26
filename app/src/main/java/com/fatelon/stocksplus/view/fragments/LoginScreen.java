@@ -91,7 +91,8 @@ public class LoginScreen extends BaseFragment {
     }
 
     private void onClickRegistrationButton(View view) {
-        if (userActionsCallBack != null) userActionsCallBack.registrationAction();
+        if (userActionsCallBack != null)
+            userActionsCallBack.registrationAction();
     }
 
     private void onClickLoginButton(View view){

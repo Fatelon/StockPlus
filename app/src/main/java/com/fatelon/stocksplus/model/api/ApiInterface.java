@@ -1,11 +1,12 @@
 package com.fatelon.stocksplus.model.api;
 
-import com.fatelon.stocksplus.model.dto.IndexesDTO;
+import com.fatelon.stocksplus.model.dto.quotes.AddNewQuoteDTO;
+import com.fatelon.stocksplus.model.dto.indexes.IndexesDTO;
 import com.fatelon.stocksplus.model.dto.LoginDTO;
-import com.fatelon.stocksplus.model.dto.NewsDTO;
+import com.fatelon.stocksplus.model.dto.news.NewsDTO;
 import com.fatelon.stocksplus.model.dto.RegistrationDTO;
-import com.fatelon.stocksplus.model.dto.SignalsDTO;
-import com.fatelon.stocksplus.model.dto.UserDataDTO;
+import com.fatelon.stocksplus.model.dto.signals.SignalsDTO;
+import com.fatelon.stocksplus.model.dto.quotes.UserDataDTO;
 
 import java.util.Map;
 
@@ -41,4 +42,11 @@ public interface ApiInterface {
 
     @GET("?action=get_user_data&filter=quotes")
     Observable<UserDataDTO> getUserData(@Query("user_id") Integer userId);
+
+    @GET("?action=delete_logged_user_quote")
+    Observable<LoginDTO> deleteQuote(@Query("id") String crossId, @Query("PHPSESSID") String session_id);
+
+    @FormUrlEncoded
+    @POST("?action=add_logged_user_quote")
+    Observable<AddNewQuoteDTO> postNewQuote(@FieldMap Map<String, String> params, @Query("PHPSESSID") String session_id);
 }

@@ -1,4 +1,4 @@
-package com.fatelon.stocksplus.model.dto;
+package com.fatelon.stocksplus.model.dto.quotes;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

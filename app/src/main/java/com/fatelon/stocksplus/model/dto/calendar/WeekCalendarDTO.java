@@ -1,39 +1,29 @@
-package com.fatelon.stocksplus.model.dto;
+package com.fatelon.stocksplus.model.dto.calendar;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Map;
-
 /**
- * Created by Fatelon on 25.01.2017.
+ * Created by Fatelon on 27.01.2017.
  */
 
-public class UserDataDTO {
+public class WeekCalendarDTO {
 
-    @SerializedName("quotes")
-    @Expose
-    private Map<String, OneQuoteDTO> quotes;
     @SerializedName("error")
     @Expose
     private Integer error;
+    @SerializedName("calendar")
+    @Expose
+    private CalendarDTO calendar;
     @SerializedName("session_id")
     @Expose
     private String sessionId;
     @SerializedName("is_login")
     @Expose
-    private String isLogin;
+    private Integer isLogin;
     @SerializedName("execution_time")
     @Expose
     private Double executionTime;
-
-    public Map<String, OneQuoteDTO> getQuotes() {
-        return quotes;
-    }
-
-    public void setQuotes(Map<String, OneQuoteDTO> quotes) {
-        this.quotes = quotes;
-    }
 
     public Integer getError() {
         return error;
@@ -41,6 +31,14 @@ public class UserDataDTO {
 
     public void setError(Integer error) {
         this.error = error;
+    }
+
+    public CalendarDTO getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(CalendarDTO calendar) {
+        this.calendar = calendar;
     }
 
     public String getSessionId() {
@@ -51,11 +49,11 @@ public class UserDataDTO {
         this.sessionId = sessionId;
     }
 
-    public String getIsLogin() {
+    public Integer getIsLogin() {
         return isLogin;
     }
 
-    public void setIsLogin(String isLogin) {
+    public void setIsLogin(Integer isLogin) {
         this.isLogin = isLogin;
     }
 

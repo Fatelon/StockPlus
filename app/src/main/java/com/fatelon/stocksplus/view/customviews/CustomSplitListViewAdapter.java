@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.fatelon.stocksplus.R;
-import com.fatelon.stocksplus.model.dto.OneSignalDTO;
+import com.fatelon.stocksplus.model.dto.signals.OneSignalDTO;
 
 import java.util.List;
 

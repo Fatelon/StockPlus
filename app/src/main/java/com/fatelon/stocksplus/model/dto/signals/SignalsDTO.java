@@ -1,22 +1,20 @@
-package com.fatelon.stocksplus.model.dto;
+package com.fatelon.stocksplus.model.dto.signals;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 /**
- * Created by Fatelon on 25.01.2017.
+ * Created by Fatelon on 24.01.2017.
  */
 
-public class NewsDTO {
+public class SignalsDTO {
 
     @SerializedName("error")
     @Expose
     private Integer error;
-    @SerializedName("news")
+    @SerializedName("signals")
     @Expose
-    private List<OneNewsDTO> news = null;
+    private Signals signals;
     @SerializedName("session_id")
     @Expose
     private String sessionId;
@@ -35,12 +33,12 @@ public class NewsDTO {
         this.error = error;
     }
 
-    public List<OneNewsDTO> getNews() {
-        return news;
+    public Signals getSignals() {
+        return signals;
     }
 
-    public void setNews(List<OneNewsDTO> news) {
-        this.news = news;
+    public void setSignals(Signals signals) {
+        this.signals = signals;
     }
 
     public String getSessionId() {

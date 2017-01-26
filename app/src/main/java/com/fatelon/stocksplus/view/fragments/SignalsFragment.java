@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
@@ -13,8 +14,9 @@ import com.fatelon.stocksplus.R;
 import com.fatelon.stocksplus.helpers.ErrorHelper;
 import com.fatelon.stocksplus.model.api.ApiInterface;
 import com.fatelon.stocksplus.model.api.ApiModule;
-import com.fatelon.stocksplus.model.dto.OneSignalDTO;
-import com.fatelon.stocksplus.model.dto.SignalsDTO;
+import com.fatelon.stocksplus.model.dto.signals.OneSignalDTO;
+import com.fatelon.stocksplus.model.dto.signals.SignalsDTO;
+import com.fatelon.stocksplus.view.callbacks.OpenNewFragmentCallBack;
 import com.fatelon.stocksplus.view.customviews.CustomSplitListViewAdapter;
 import com.fatelon.stocksplus.view.customviews.CustomTitle;
 
@@ -24,6 +26,8 @@ import java.util.List;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
+import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
 
 /**
  * Created by Fatelon on 23.01.2017.
@@ -43,10 +47,18 @@ public class SignalsFragment extends BaseSignalsFragment {
 
     private List<OneSignalDTO> splitItemObjects = new ArrayList<OneSignalDTO>();
 
+    private OpenNewFragmentCallBack openNewFragmentCallBack;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
+        try {
+            openNewFragmentCallBack = (OpenNewFragmentCallBack) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement activityCallback");
+        }
     }
 
     @Override
@@ -108,6 +120,12 @@ public class SignalsFragment extends BaseSignalsFragment {
         signalsListView = (ListView) view.findViewById(R.id.signals_list_view);
         customSplitListViewAdapter = new CustomSplitListViewAdapter(context, R.layout.custom_split_item, splitItemObjects);
         signalsListView.setAdapter(customSplitListViewAdapter);
+        signalsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                openNewFragmentCallBack.openNewFragmentWithString(STOCK_DETAIL_TRIGGER, splitItemObjects.get(position).getTicker());
+            }
+        });
         ApiInterface apiInterface = ApiModule.getApiInterface();
         apiInterface.getSignals(getSignalApiText(number)).subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).

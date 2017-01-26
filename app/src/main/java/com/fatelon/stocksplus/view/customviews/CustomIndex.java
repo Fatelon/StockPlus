@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
 import com.fatelon.stocksplus.R;
-import com.fatelon.stocksplus.model.dto.IndexesItem;
+import com.fatelon.stocksplus.model.dto.indexes.IndexesItem;
 
 /**
  * Created by Fatelon on 24.01.2017.

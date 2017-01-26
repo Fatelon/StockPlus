@@ -12,24 +12,31 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.fatelon.stocksplus.R;
+import com.fatelon.stocksplus.helpers.ErrorHelper;
 import com.fatelon.stocksplus.helpers.MyHorizontalViewHelper;
 import com.fatelon.stocksplus.helpers.PreferencesHelper;
 import com.fatelon.stocksplus.model.api.ApiInterface;
 import com.fatelon.stocksplus.model.api.ApiModule;
-import com.fatelon.stocksplus.model.dto.IndexesDTO;
-import com.fatelon.stocksplus.model.dto.NewsDTO;
-import com.fatelon.stocksplus.model.dto.OneNewsDTO;
-import com.fatelon.stocksplus.model.dto.OneQuoteDTO;
-import com.fatelon.stocksplus.model.dto.UserDataDTO;
+import com.fatelon.stocksplus.model.dto.quotes.AddNewQuoteDTO;
+import com.fatelon.stocksplus.model.dto.indexes.IndexesDTO;
+import com.fatelon.stocksplus.model.dto.LoginDTO;
+import com.fatelon.stocksplus.model.dto.news.NewsDTO;
+import com.fatelon.stocksplus.model.dto.news.OneNewsDTO;
+import com.fatelon.stocksplus.model.dto.quotes.OneQuoteDTO;
+import com.fatelon.stocksplus.model.dto.quotes.UserDataDTO;
 import com.fatelon.stocksplus.view.Settings;
+import com.fatelon.stocksplus.view.callbacks.DialogMultiResponse;
+import com.fatelon.stocksplus.view.callbacks.MyHorizontalViewCallBack;
 import com.fatelon.stocksplus.view.callbacks.OpenNewFragmentCallBack;
 import com.fatelon.stocksplus.view.customviews.CustomIndex;
 import com.fatelon.stocksplus.view.customviews.CustomMarketItem;
 import com.fatelon.stocksplus.view.customviews.CustomNewsItem;
 import com.fatelon.stocksplus.view.customviews.CustomQuoteView;
 import com.fatelon.stocksplus.view.customviews.CustomTextView;
+import com.fatelon.stocksplus.view.dialogs.SimpleDialog;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -40,11 +47,13 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
+
 /**
  * Created by Fatelon on 21.01.2017.
  */
 
-public class Market extends BaseMenuFragment {
+public class Market extends BaseMenuFragment implements MyHorizontalViewCallBack {
 
     private static String TAG = Market.class.getSimpleName();
 
@@ -189,6 +198,14 @@ public class Market extends BaseMenuFragment {
         }
     }
 
+    private void onClickStockDetailItem(String actionName) {
+        try {
+            openNewFragmentCallBack.openNewFragmentWithString(STOCK_DETAIL_TRIGGER, actionName);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     private void onMarketItemClick(Integer itemNumber) {
         if (openNewFragmentCallBack != null) openNewFragmentCallBack.openNewFragment(itemNumber);
     }
@@ -289,12 +306,15 @@ public class Market extends BaseMenuFragment {
     }
 
     private void setQuotes(Map<String, OneQuoteDTO> m) {
-
+        horizontalViewHelper.clear();
+        horizontalViewHelper.setActionCallBack((MyHorizontalViewCallBack)this);
         for (Map.Entry<String, OneQuoteDTO> entry : m.entrySet()) {
             CustomQuoteView cq = new CustomQuoteView(context);
             cq.setQuote(entry.getValue());
+            cq.setOnClickListener(v->onClickStockDetailItem(entry.getValue().get2()));
             horizontalViewHelper.addView(cq);
         }
+        horizontalViewHelper.addEmptyQuote();
     }
 
     private void changeMode() {
@@ -312,4 +332,75 @@ public class Market extends BaseMenuFragment {
         horizontalViewHelper.setDeleteVisibility(editMode);
     }
 
+    @Override
+    public void onPressDeleteCross(String crossId) {
+        quotesLoader.setVisibility(View.VISIBLE);
+        ApiInterface apiInterface = ApiModule.getApiInterface();
+        apiInterface.deleteQuote(crossId, PreferencesHelper.getUserSessionId(context)).subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).
+                subscribe(new Subscriber<LoginDTO>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.d(TAG, "onCompleted");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        quotesLoader.setVisibility(View.GONE);
+                        Log.d(TAG, "error - " + e.toString());
+                        ErrorHelper.failedToConnectSimpleDialog(context, e);
+                    }
+
+                    @Override
+                    public void onNext(LoginDTO response) {
+                        Log.d(TAG, "onNext - ");
+                        try {
+                            getUserData();
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+
+    }
+
+    @Override
+    public void onPressAddNew() {
+        SimpleDialog.showAddQuoteDialogWithCallback(context, new DialogMultiResponse() {
+            @Override
+            public void dialogMultiResponse(String... params) {
+                if (params[0] != null && !params[0].equals("")) {
+                    Map<String, String> m = new HashMap<String, String>();
+                    m.put("instrument_name", params[0].toUpperCase());
+                    quotesLoader.setVisibility(View.VISIBLE);
+                    ApiInterface apiInterface = ApiModule.getApiInterface();
+                    apiInterface.postNewQuote(m, PreferencesHelper.getUserSessionId(context)).subscribeOn(Schedulers.io()).
+                            observeOn(AndroidSchedulers.mainThread()).
+                            subscribe(new Subscriber<AddNewQuoteDTO>() {
+                                @Override
+                                public void onCompleted() {
+                                    Log.d(TAG, "onCompleted");
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    quotesLoader.setVisibility(View.GONE);
+                                    Log.d(TAG, "error - " + e.toString());
+                                    ErrorHelper.failedToConnectSimpleDialog(context, e);
+                                }
+
+                                @Override
+                                public void onNext(AddNewQuoteDTO response) {
+                                    Log.d(TAG, "onNext - ");
+                                    try {
+                                        getUserData();
+                                    } catch (Exception ex) {
+                                        ex.printStackTrace();
+                                    }
+                                }
+                            });
+                }
+            }
+        });
+    }
 }

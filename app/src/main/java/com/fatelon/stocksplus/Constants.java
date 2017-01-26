@@ -12,6 +12,8 @@ public class Constants {
 
     public static final Integer SERVER_MESSAGE_ERROR = 1;
 
+    public static final Integer STOCK_DETAIL_TRIGGER = 77;
+
     public static final Integer NEWS_TEXT_MAX_LENGTH = 60;
 
 }

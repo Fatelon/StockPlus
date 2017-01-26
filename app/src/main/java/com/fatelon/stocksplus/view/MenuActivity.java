@@ -15,7 +15,10 @@ import com.fatelon.stocksplus.view.fragments.NewsesWebViewFragment;
 import com.fatelon.stocksplus.view.fragments.Portfolio;
 import com.fatelon.stocksplus.view.fragments.Search;
 import com.fatelon.stocksplus.view.fragments.SignalsFragment;
+import com.fatelon.stocksplus.view.fragments.StockDetailFragment;
 import com.fatelon.stocksplus.view.fragments.Watchlists;
+
+import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
 
 /**
  * Created by Fatelon on 21.01.2017.
@@ -149,6 +152,12 @@ import com.fatelon.stocksplus.view.fragments.Watchlists;
             args.putString("url", param);
             newsesWebViewFragment.setArguments(args);
             replaceFragment(newsesWebViewFragment, true, false);
+        } else if (number == STOCK_DETAIL_TRIGGER) {
+            StockDetailFragment stockDetailFragment = new StockDetailFragment();
+            Bundle args = new Bundle();
+            args.putString("stock_name", param);
+            stockDetailFragment.setArguments(args);
+            replaceFragment(stockDetailFragment, true, false);
         }
     }
 

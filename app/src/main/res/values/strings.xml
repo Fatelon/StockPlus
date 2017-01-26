@@ -25,6 +25,11 @@
 
     <!-- Dialogs -->
     <string name="positive_button_text">OK</string>
+    <string name="add_stock_dialog_button_add">Add</string>
+    <string name="add_stock_dialog__button_cancel">Cancel</string>
+    <string name="add_stock_dialog_title">Add stock</string>
+    <string name="add_stock_dialog_message">Add new ticker</string>
+    <string name="add_stock_dialog_edit_text_hint">Enter new ticker</string>
 
     <!-- Errors -->
     <string name="warning">Warning</string>
@@ -86,6 +91,9 @@
     <string name="market_item_dividends">Dividends</string>
     <string name="market_item_splits">Splits</string>
     <string name="market_item_ipo">IPO</string>
+
+    <!-- Stock detail-->
+    <string name="stock_detail_title">Stock detail</string>
 
         <!-- Indexes -->
     <string name="index_type_1_name">S&amp;P500</string>
