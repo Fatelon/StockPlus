@@ -3,6 +3,8 @@ package com.fatelon.stocksplus.model.dto.calendar;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Map;
+
 /**
  * Created by Fatelon on 27.01.2017.
  */
@@ -14,7 +16,7 @@ public class WeekCalendarDTO {
     private Integer error;
     @SerializedName("calendar")
     @Expose
-    private CalendarDTO calendar;
+    private Map<String, CalendarDTO> calendar;
     @SerializedName("session_id")
     @Expose
     private String sessionId;
@@ -33,11 +35,11 @@ public class WeekCalendarDTO {
         this.error = error;
     }
 
-    public CalendarDTO getCalendar() {
+    public Map<String, CalendarDTO> getCalendar() {
         return calendar;
     }
 
-    public void setCalendar(CalendarDTO calendar) {
+    public void setCalendar(Map<String, CalendarDTO> calendar) {
         this.calendar = calendar;
     }
 

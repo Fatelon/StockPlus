@@ -2,6 +2,7 @@ package com.fatelon.stocksplus.view.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,17 +15,23 @@ import com.fatelon.stocksplus.R;
 import com.fatelon.stocksplus.helpers.ErrorHelper;
 import com.fatelon.stocksplus.model.api.ApiInterface;
 import com.fatelon.stocksplus.model.api.ApiModule;
+import com.fatelon.stocksplus.model.dto.calendar.CalendarDTO;
 import com.fatelon.stocksplus.model.dto.signals.OneSignalDTO;
 import com.fatelon.stocksplus.model.dto.signals.SignalsDTO;
 import com.fatelon.stocksplus.view.callbacks.OpenNewFragmentCallBack;
+import com.fatelon.stocksplus.view.customviews.CustomEventsListViewAdapter;
 import com.fatelon.stocksplus.view.customviews.CustomSplitListViewAdapter;
 import com.fatelon.stocksplus.view.customviews.CustomTitle;
+import com.fatelon.stocksplus.view.customviews.customRecyclerView.StickyHeaderLayoutManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
@@ -49,6 +56,10 @@ public class SignalsFragment extends BaseSignalsFragment {
 
     private OpenNewFragmentCallBack openNewFragmentCallBack;
 
+    private Map<String, CalendarDTO> calendar = new HashMap<String, CalendarDTO>();
+
+    private RecyclerView recyclerView;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -69,19 +80,40 @@ public class SignalsFragment extends BaseSignalsFragment {
         Bundle args = getArguments();
         Integer number = args.getInt("number", 0);
         if (number > 0 && number < 7) {
-            showSignals(view, number);
+            signalsTitle.setRightTextVisible();
+            showSignals(number);
+        } else if (number > 6 && number < 12) {
+            showEvents(number);
         }
         signalsTitle.setCustomText(getThisTitle(number));
 
         return view;
     }
 
+    public void setCalendar(Map<String, CalendarDTO> calendar) {
+        this.calendar = calendar;
+    }
+
     private void init(View view) {
         signalsTitle = (CustomTitle) view.findViewById(R.id.signals_fragment_title);
-        signalsTitle.setRightTextVisible();
         signalsTitle.setPressBackCallBack(context);
         signalsLoadingIndicator = (FrameLayout) view.findViewById(R.id.signals_loading_indicator);
+        signalsListView = (ListView) view.findViewById(R.id.signals_list_view);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+    }
 
+    private void showEvents(Integer number) {
+        signalsListView.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
+        recyclerView.setLayoutManager(new StickyHeaderLayoutManager());
+        CustomEventsListViewAdapter customEventsListViewAdapter = new CustomEventsListViewAdapter(number, calendar);
+        recyclerView.setAdapter(customEventsListViewAdapter);
+        customEventsListViewAdapter.getTickerClicks().subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                openNewFragmentCallBack.openNewFragmentWithString(STOCK_DETAIL_TRIGGER, s);
+            }
+        });
     }
 
     private String getThisTitle(Integer number) {
@@ -115,9 +147,8 @@ public class SignalsFragment extends BaseSignalsFragment {
         return text;
     }
 
-    private void showSignals(View view, final Integer number) {
+    private void showSignals(final Integer number) {
         showLoadingIndicator();
-        signalsListView = (ListView) view.findViewById(R.id.signals_list_view);
         customSplitListViewAdapter = new CustomSplitListViewAdapter(context, R.layout.custom_split_item, splitItemObjects);
         signalsListView.setAdapter(customSplitListViewAdapter);
         signalsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

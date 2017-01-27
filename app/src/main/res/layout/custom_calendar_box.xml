@@ -61,9 +61,8 @@
         <TableRow
             android:id="@+id/calendar_date_box"
             android:weightSum="7"
-            android:layout_marginTop="@dimen/screen_side_padding">
+            android:layout_marginTop="@dimen/screen_side_padding"/>
 
-        </TableRow>
     </TableLayout>
 
 </LinearLayout>

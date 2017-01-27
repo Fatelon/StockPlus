@@ -92,6 +92,8 @@
     <string name="market_item_splits">Splits</string>
     <string name="market_item_ipo">IPO</string>
 
+    <string name="day_events_title">Day events</string>
+
     <!-- Stock detail-->
     <string name="stock_detail_title">Stock detail</string>
 

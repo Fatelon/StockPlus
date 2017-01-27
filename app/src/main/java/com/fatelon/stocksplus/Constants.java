@@ -14,6 +14,8 @@ public class Constants {
 
     public static final Integer STOCK_DETAIL_TRIGGER = 77;
 
+    public static final Integer DIVIDENDS_TRIGGER = 9;
+
     public static final Integer NEWS_TEXT_MAX_LENGTH = 60;
 
 }

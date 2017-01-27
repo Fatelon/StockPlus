@@ -6,19 +6,15 @@
     android:layout_height="match_parent">
 
     <com.fatelon.stocksplus.view.customviews.CustomTitle
-        android:id="@+id/stock_detail_title"
+        android:id="@+id/day_events_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/menu_tab_height"
-        app:main_text="@string/stock_detail_title"/>
+        app:main_text="@string/day_events_title"/>
 
-    <com.fatelon.stocksplus.view.customviews.CustomTextView
-        android:id="@+id/stock_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <ImageView
-        android:id="@+id/yahoo_chart_container"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/day_events_recycler_view"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

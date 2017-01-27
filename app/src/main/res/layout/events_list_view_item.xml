@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/mainBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/events_list_item_height">
+        <View android:id="@+id/events_item_colored_stripe"
+            android:layout_width="@dimen/colored_stripe_big_width"
+            android:layout_height="@dimen/colored_stripe_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/screen_side_padding"
+            android:layout_marginRight="@dimen/edit_text_padding"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:id="@+id/events_item_ticker"
+                    android:layout_width="@dimen/events_list_ticker_width"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/edit_text_padding"
+                    android:textColor="@color/whiteTextColor"
+                    android:textSize="@dimen/login_common_text_size"
+                    app:font_type="5"/>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*">
+                    <!--android:stretchColumns="*"-->
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        >
+                        <com.fatelon.stocksplus.view.customviews.CustomTextView
+                            android:id="@+id/events_item_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/item_height"
+                            android:padding="@dimen/edit_text_padding"
+                            android:textSize="@dimen/login_common_text_size"
+                            android:textColor="@color/whiteTextColor"
+                            app:font_type="3"/>
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+            <com.fatelon.stocksplus.view.customviews.CustomTextView
+                android:id="@+id/events_item_dividend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="1dp"
+                android:textSize="@dimen/login_common_text_size"
+                android:textColor="@color/whiteTextColor"
+                app:font_type="3"/>
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:id="@+id/events_list_divider"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/edit_text_padding"
+        android:layout_marginTop="@dimen/edit_text_padding"
+        android:layout_height="1dp"
+        android:background="@color/lightGrayBackground"
+        android:layout_marginLeft="@dimen/screen_side_padding"
+        android:layout_marginRight="@dimen/screen_side_padding"/>
+</LinearLayout>

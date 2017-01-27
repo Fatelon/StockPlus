@@ -16,13 +16,13 @@ public class CalendarDTO {
     private List<EarningDTO> earnings = null;
     @SerializedName("confcalls")
     @Expose
-    private List<ConfcallDTO> confcalls = null;
+    private List<CommonEventDTO> confcalls = null;
     @SerializedName("splits")
     @Expose
-    private List<SplitsDTO> splits = null;
+    private List<CommonEventDTO> splits = null;
     @SerializedName("ipo")
     @Expose
-    private List<IpoDTO> ipo = null;
+    private List<CommonEventDTO> ipo = null;
     @SerializedName("dividents")
     @Expose
     private List<DividentDTO> dividents = null;
@@ -38,27 +38,27 @@ public class CalendarDTO {
         this.earnings = earnings;
     }
 
-    public List<ConfcallDTO> getConfcalls() {
+    public List<CommonEventDTO> getConfcalls() {
         return confcalls;
     }
 
-    public void setConfcalls(List<ConfcallDTO> confcalls) {
+    public void setConfcalls(List<CommonEventDTO> confcalls) {
         this.confcalls = confcalls;
     }
 
-    public List<SplitsDTO> getSplits() {
+    public List<CommonEventDTO> getSplits() {
         return splits;
     }
 
-    public void setSplits(List<SplitsDTO> splits) {
+    public void setSplits(List<CommonEventDTO> splits) {
         this.splits = splits;
     }
 
-    public List<IpoDTO> getIPO() {
+    public List<CommonEventDTO> getIPO() {
         return ipo;
     }
 
-    public void setIPO(List<IpoDTO> ipo) {
+    public void setIPO(List<CommonEventDTO> ipo) {
         this.ipo = ipo;
     }
 

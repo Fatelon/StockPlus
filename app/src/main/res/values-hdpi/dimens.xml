@@ -31,5 +31,8 @@
 
     <dimen name="colored_stripe_width">23dp</dimen>
     <dimen name="colored_stripe_height">3dp</dimen>
+    <dimen name="colored_stripe_big_width">36dp</dimen>
+    <dimen name="events_list_ticker_width">70dp</dimen>
+    <dimen name="events_list_item_height">80dp</dimen>
 
 </resources>

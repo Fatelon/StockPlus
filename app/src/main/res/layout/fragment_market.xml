@@ -128,7 +128,9 @@
                 android:layout_height="wrap_content"/>
 
             <com.fatelon.stocksplus.view.customviews.CustomCalendarBox
+                android:id="@+id/market_custom_calendar_box"
                 android:layout_marginTop="@dimen/screen_side_padding"
+                android:layout_marginBottom="@dimen/screen_side_padding"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

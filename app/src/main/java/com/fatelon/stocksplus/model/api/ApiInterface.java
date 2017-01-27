@@ -1,5 +1,6 @@
 package com.fatelon.stocksplus.model.api;
 
+import com.fatelon.stocksplus.model.dto.calendar.WeekCalendarDTO;
 import com.fatelon.stocksplus.model.dto.quotes.AddNewQuoteDTO;
 import com.fatelon.stocksplus.model.dto.indexes.IndexesDTO;
 import com.fatelon.stocksplus.model.dto.LoginDTO;
@@ -49,4 +50,8 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("?action=add_logged_user_quote")
     Observable<AddNewQuoteDTO> postNewQuote(@FieldMap Map<String, String> params, @Query("PHPSESSID") String session_id);
+
+
+    @GET("?action=current_week_calendar")
+    Observable<WeekCalendarDTO> getWeekCalendar();
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/darkGrayBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.fatelon.stocksplus.view.customviews.CustomTextView
+        android:id="@+id/events_header_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/edit_text_padding"
+        android:paddingBottom="@dimen/edit_text_padding"
+        android:paddingLeft="@dimen/screen_side_padding"
+        android:textColor="@color/whiteTextColor"
+        android:textSize="@dimen/signal_item_text_size"
+        app:font_type="4"/>
+
+</LinearLayout>

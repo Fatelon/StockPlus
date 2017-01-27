@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.fatelon.stocksplus.R;
+import com.fatelon.stocksplus.model.dto.calendar.CalendarDTO;
 import com.fatelon.stocksplus.view.callbacks.OpenNewFragmentCallBack;
 import com.fatelon.stocksplus.view.callbacks.PressBackCallBack;
 import com.fatelon.stocksplus.view.customviews.TabCustomButton;
 import com.fatelon.stocksplus.view.fragments.BaseFragmentActivity;
+import com.fatelon.stocksplus.view.fragments.DayEvents;
 import com.fatelon.stocksplus.view.fragments.Market;
 import com.fatelon.stocksplus.view.fragments.News;
 import com.fatelon.stocksplus.view.fragments.NewsesWebViewFragment;
@@ -17,6 +19,10 @@ import com.fatelon.stocksplus.view.fragments.Search;
 import com.fatelon.stocksplus.view.fragments.SignalsFragment;
 import com.fatelon.stocksplus.view.fragments.StockDetailFragment;
 import com.fatelon.stocksplus.view.fragments.Watchlists;
+
+import java.util.Map;
+
+import rx.functions.Action1;
 
 import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
 
@@ -76,12 +82,33 @@ import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
     private void tabMarketButtonClick(View v) {
         v.setClickable(false);
         if (marketFrag == null) {
-            marketFrag = new Market();
+            marketFrag = getNewMarketInstance();
             replaceFragment(marketFrag, false, false);
         } else {
             popFragment();
         }
         setBlue((TabCustomButton)v);
+    }
+
+    private Market getNewMarketInstance() {
+        Market mMarketFrag = new Market();
+        mMarketFrag.getDayBoxClick().subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                if (marketFrag != null) {
+                    DayEvents dayEvents = new DayEvents();
+                    dayEvents.setCalendar(s, mMarketFrag.getCalendar());
+                    dayEvents.getEventClick().subscribe(new Action1<String>() {
+                        @Override
+                        public void call(String s) {
+                            openNewFragmentWithString(STOCK_DETAIL_TRIGGER, s);
+                        }
+                    });
+                    replaceFragment(dayEvents, true, false);
+                }
+            }
+        });;
+        return mMarketFrag;
     }
 
     private void tabPortfolioButtonClick(View v) {
@@ -159,6 +186,16 @@ import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
             stockDetailFragment.setArguments(args);
             replaceFragment(stockDetailFragment, true, false);
         }
+    }
+
+    @Override
+    public void openNewFragmentWithWeekCalendar(Integer number, Map<String, CalendarDTO> calendar) {
+        SignalsFragment signalsFragment = new SignalsFragment();
+        Bundle args = new Bundle();
+        args.putInt("number", number);
+        signalsFragment.setArguments(args);
+        signalsFragment.setCalendar(calendar);
+        replaceFragment(signalsFragment, true, false);
     }
 
 }

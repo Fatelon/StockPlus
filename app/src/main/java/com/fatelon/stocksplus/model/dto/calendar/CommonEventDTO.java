@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Fatelon on 27.01.2017.
  */
 
-public class IpoDTO {
+public class CommonEventDTO {
 
     @SerializedName("title")
     @Expose

@@ -17,6 +17,8 @@ import com.fatelon.stocksplus.helpers.MyHorizontalViewHelper;
 import com.fatelon.stocksplus.helpers.PreferencesHelper;
 import com.fatelon.stocksplus.model.api.ApiInterface;
 import com.fatelon.stocksplus.model.api.ApiModule;
+import com.fatelon.stocksplus.model.dto.calendar.CalendarDTO;
+import com.fatelon.stocksplus.model.dto.calendar.WeekCalendarDTO;
 import com.fatelon.stocksplus.model.dto.quotes.AddNewQuoteDTO;
 import com.fatelon.stocksplus.model.dto.indexes.IndexesDTO;
 import com.fatelon.stocksplus.model.dto.LoginDTO;
@@ -28,6 +30,7 @@ import com.fatelon.stocksplus.view.Settings;
 import com.fatelon.stocksplus.view.callbacks.DialogMultiResponse;
 import com.fatelon.stocksplus.view.callbacks.MyHorizontalViewCallBack;
 import com.fatelon.stocksplus.view.callbacks.OpenNewFragmentCallBack;
+import com.fatelon.stocksplus.view.customviews.CustomCalendarBox;
 import com.fatelon.stocksplus.view.customviews.CustomIndex;
 import com.fatelon.stocksplus.view.customviews.CustomMarketItem;
 import com.fatelon.stocksplus.view.customviews.CustomNewsItem;
@@ -45,8 +48,11 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
+import rx.subjects.PublishSubject;
 
+import static com.fatelon.stocksplus.Constants.DIVIDENDS_TRIGGER;
 import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
 
 /**
@@ -88,6 +94,8 @@ public class Market extends BaseMenuFragment implements MyHorizontalViewCallBack
     private CustomNewsItem customNewsItem2;
     private CustomNewsItem customNewsItem3;
 
+    private CustomCalendarBox marketCustomCalendarBox;
+
     private CustomTextView marketEditButton;
 
     private List<OneNewsDTO> marketScreenNews = new ArrayList<OneNewsDTO>();
@@ -95,6 +103,10 @@ public class Market extends BaseMenuFragment implements MyHorizontalViewCallBack
     private Subscription indexUpdateSubscription;
 
     private MyHorizontalViewHelper horizontalViewHelper;
+
+    private Map<String, CalendarDTO> calendar = new HashMap<String, CalendarDTO>();
+
+    private final PublishSubject<String> onClickDayBox = PublishSubject.create();
 
     private boolean editMode = false;
 
@@ -121,6 +133,8 @@ public class Market extends BaseMenuFragment implements MyHorizontalViewCallBack
         });
         getNews(3);
         getUserData();
+
+        getWeekCalendar();
         return view;
     }
 
@@ -128,6 +142,14 @@ public class Market extends BaseMenuFragment implements MyHorizontalViewCallBack
     public void onPause() {
         super.onPause();
         indexUpdateSubscription.unsubscribe();
+    }
+
+    public Observable<String> getDayBoxClick(){
+        return onClickDayBox.asObservable();
+    }
+
+    public Map<String, CalendarDTO> getCalendar() {
+        return calendar;
     }
 
     private void init(View view) {
@@ -146,15 +168,15 @@ public class Market extends BaseMenuFragment implements MyHorizontalViewCallBack
         marketItemMostVolatile = (CustomMarketItem) view.findViewById(R.id.market_item_most_volatile_elem);
         marketItemMostVolatile.setOnClickListener(v->onMarketItemClick(6));
         marketItemEarnings = (CustomMarketItem) view.findViewById(R.id.market_item_earnings_elem);
-        marketItemEarnings.setOnClickListener(v->onMarketItemClick(7));
+        marketItemEarnings.setOnClickListener(v->onClickEventsItem(7));
         marketItemConferenceCalls = (CustomMarketItem) view.findViewById(R.id.market_item_conference_calls_elem);
-        marketItemConferenceCalls.setOnClickListener(v->onMarketItemClick(8));
+        marketItemConferenceCalls.setOnClickListener(v->onClickEventsItem(8));
         marketItemDividends = (CustomMarketItem) view.findViewById(R.id.market_item_dividends_elem);
-        marketItemDividends.setOnClickListener(v->onMarketItemClick(9));
+        marketItemDividends.setOnClickListener(v->onClickEventsItem(DIVIDENDS_TRIGGER));
         marketItemSplits = (CustomMarketItem) view.findViewById(R.id.market_item_splits_elem);
-        marketItemSplits.setOnClickListener(v->onMarketItemClick(10));
+        marketItemSplits.setOnClickListener(v->onClickEventsItem(10));
         marketItemIpo = (CustomMarketItem) view.findViewById(R.id.market_item_ipo_elem);
-        marketItemIpo.setOnClickListener(v->onMarketItemClick(11));
+        marketItemIpo.setOnClickListener(v->onClickEventsItem(11));
 
         marketEditButton = (CustomTextView) view.findViewById(R.id.market_edit_button);
         marketEditButton.setOnClickListener(v->changeMode());
@@ -172,6 +194,15 @@ public class Market extends BaseMenuFragment implements MyHorizontalViewCallBack
         customNewsItem2.setOnClickListener(v->onClickCustomNewsItem(1));
         customNewsItem3 = (CustomNewsItem) view.findViewById(R.id.market_custom_news_3);
         customNewsItem3.setOnClickListener(v->onClickCustomNewsItem(2));
+
+        marketCustomCalendarBox = (CustomCalendarBox) view.findViewById(R.id.market_custom_calendar_box);
+
+        marketCustomCalendarBox.getDayCalendarBoxesClick().subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                onClickDayBox.onNext(s);
+            }
+        });
 
         newsLoader = (FrameLayout) view.findViewById(R.id.market_news_loader);
         quotesLoader = (FrameLayout) view.findViewById(R.id.quotes_loader);
@@ -201,6 +232,14 @@ public class Market extends BaseMenuFragment implements MyHorizontalViewCallBack
     private void onClickStockDetailItem(String actionName) {
         try {
             openNewFragmentCallBack.openNewFragmentWithString(STOCK_DETAIL_TRIGGER, actionName);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void onClickEventsItem(Integer itemNumber) {
+        try {
+            openNewFragmentCallBack.openNewFragmentWithWeekCalendar(itemNumber, calendar);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -402,5 +441,33 @@ public class Market extends BaseMenuFragment implements MyHorizontalViewCallBack
                 }
             }
         });
+    }
+
+    private void getWeekCalendar() {
+        ApiInterface apiInterface = ApiModule.getApiInterface();
+        apiInterface.getWeekCalendar().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).
+                subscribe(new Subscriber<WeekCalendarDTO>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.d(TAG, "onCompleted");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "error - " + e.toString());
+                    }
+
+                    @Override
+                    public void onNext(WeekCalendarDTO response) {
+                        Log.d(TAG, "onNext - ");
+                        try {
+                            calendar = response.getCalendar();
+                            marketCustomCalendarBox.setDates(calendar);
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
     }
 }
