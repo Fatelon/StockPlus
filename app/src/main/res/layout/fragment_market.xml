@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:paddingLeft="@dimen/screen_side_padding"
+            android:paddingLeft="@dimen/screen_double_side_padding"
             android:textSize="@dimen/item_text_size"
             android:textColor="@color/whiteTextColor"
             android:text="@string/tab_edit"

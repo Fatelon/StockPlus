@@ -80,5 +80,18 @@ public class ErrorHelper {
         }
     }
 
+    /*
+    * Forgot pass error
+    * */
+    public static void forgotPassError(Context context) {
+        try {
+            String title = context.getResources().getString(R.string.forgot_pass_error_title);
+            String message = context.getResources().getString(R.string.forgot_pass_error_message);
+            SimpleDialog.showSimpleDialog(context, title, message);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
 
 }

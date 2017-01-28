@@ -16,9 +16,12 @@ import com.fatelon.stocksplus.helpers.PreferencesHelper;
 import com.fatelon.stocksplus.model.api.ApiInterface;
 import com.fatelon.stocksplus.model.api.ApiModule;
 import com.fatelon.stocksplus.model.dto.LoginDTO;
+import com.fatelon.stocksplus.model.dto.RegistrationDTO;
+import com.fatelon.stocksplus.view.callbacks.DialogMultiResponse;
 import com.fatelon.stocksplus.view.callbacks.LoadingCallBack;
 import com.fatelon.stocksplus.view.callbacks.UserActionsCallBack;
 import com.fatelon.stocksplus.view.customviews.CustomTextView;
+import com.fatelon.stocksplus.view.dialogs.SimpleDialog;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -85,6 +88,19 @@ public class LoginScreen extends BaseFragment {
         loginButton = (Button) view.findViewById(R.id.login_button);
         loginButton.setOnClickListener(v -> onClickLoginButton(v));
         forgotPasswordButton = (CustomTextView) view.findViewById(R.id.forgot_password_button);
+        forgotPasswordButton.setOnClickListener(v->{
+            SimpleDialog.showForgotPasswordDialogWithCallback(context, new DialogMultiResponse() {
+                @Override
+                public void dialogMultiResponse(String... params) {
+                    try {
+                        doForgotPasswordRequest(params[0], params[1]);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+
+        });
         registerationButton = (CustomTextView) view.findViewById(R.id.new_user_button);
         registerationButton.setOnClickListener(v -> onClickRegistrationButton(v));
         saveMeCheckBox = (CheckBox) view.findViewById(R.id.login_save_me_check_box);
@@ -164,5 +180,42 @@ public class LoginScreen extends BaseFragment {
             ex.printStackTrace();
         }
         if (userActionsCallBack != null) userActionsCallBack.loginAction();
+    }
+
+    private void doForgotPasswordRequest(String uName, String uEmail) {
+        Map<String, String> m = new HashMap<>();
+        m.put(context.getResources().getString(R.string.user_name), uName);
+        m.put(context.getResources().getString(R.string.email), uEmail);
+        ApiInterface apiInterface = ApiModule.getApiInterface();
+        apiInterface.postForgotPassword(m).subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).
+                subscribe(new Subscriber<RegistrationDTO>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.d(TAG, "onCompleted");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (loadingCallBack != null) loadingCallBack.hideLoading();
+                        ErrorHelper.failedToConnectSimpleDialog(context, e);
+                    }
+
+                    @Override
+                    public void onNext(RegistrationDTO user) {
+                        Log.d(TAG, "onNext - ");
+                        if (loadingCallBack != null) loadingCallBack.hideLoading();
+                        try {
+                            int error = user.getError();
+                            if (error == SERVER_MESSAGE_ERROR) {
+                                ErrorHelper.forgotPassError(context);
+                            } else {
+                                SimpleDialog.showSimpleDialog(context, "Success", "Username and password sent to your e-mail");
+                            }
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
     }
 }

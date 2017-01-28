@@ -8,6 +8,7 @@ import com.fatelon.stocksplus.model.dto.news.NewsDTO;
 import com.fatelon.stocksplus.model.dto.RegistrationDTO;
 import com.fatelon.stocksplus.model.dto.signals.SignalsDTO;
 import com.fatelon.stocksplus.model.dto.quotes.UserDataDTO;
+import com.fatelon.stocksplus.model.dto.stockinfo.StockInfoFirstResponseDTO;
 
 import java.util.Map;
 
@@ -27,6 +28,10 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("?action=login_user")
     Observable<LoginDTO> postLogin(@FieldMap Map<String, String> userParams);
+
+    @FormUrlEncoded
+    @POST("?action=forgot_password")
+    Observable<RegistrationDTO> postForgotPassword(@FieldMap Map<String, String> userParams);
 
     @FormUrlEncoded
     @POST("?action=register_user")
@@ -51,7 +56,9 @@ public interface ApiInterface {
     @POST("?action=add_logged_user_quote")
     Observable<AddNewQuoteDTO> postNewQuote(@FieldMap Map<String, String> params, @Query("PHPSESSID") String session_id);
 
-
     @GET("?action=current_week_calendar")
     Observable<WeekCalendarDTO> getWeekCalendar();
+
+    @GET("?action=get_stock_info")
+    Observable<StockInfoFirstResponseDTO> getStockInfo(@Query("ticker") String ticker);
 }

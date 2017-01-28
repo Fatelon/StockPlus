@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:background="@color/mainBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,14 +12,260 @@
         android:layout_height="@dimen/menu_tab_height"
         app:main_text="@string/stock_detail_title"/>
 
-    <com.fatelon.stocksplus.view.customviews.CustomTextView
-        android:id="@+id/stock_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <ImageView
-        android:id="@+id/yahoo_chart_container"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stock_detail_title">
 
-</LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--android:shrinkColumns="*"-->
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/screen_common_padding"
+                android:layout_marginBottom="@dimen/edit_text_padding"
+                android:stretchColumns="*">
+                <TableRow
+                    android:weightSum="2">
+                    <com.fatelon.stocksplus.view.customviews.CustomTextView
+                        android:layout_width="0dp"
+                        android:textColor="@color/whiteTextColor"
+                        android:id="@+id/stock_detail_ticker"
+                        android:textSize="@dimen/login_title_text_size"
+                        app:font_type="5"
+                        android:layout_weight="1"/>
+
+                    <com.fatelon.stocksplus.view.customviews.CustomTextView
+                        android:layout_width="0dp"
+                        android:id="@+id/stock_detail_price"
+                        android:textColor="@color/whiteTextColor"
+                        android:textSize="@dimen/signal_item_text_size"
+                        android:layout_gravity="right"
+                        android:gravity="right"
+                        app:font_type="1"
+                        android:layout_weight="1"/>
+                </TableRow>
+                <TableRow
+                    android:weightSum="2">
+                    <com.fatelon.stocksplus.view.customviews.CustomTextView
+                        android:id="@+id/stock_detail_company_name"
+                        android:layout_width="0dp"
+                        android:textColor="@color/whiteTextColor"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/item_text_size"
+                        app:font_type="1"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_gravity="right"
+                        android:gravity="right"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/stock_detail_indicator"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/up_indicator"/>
+
+                        <com.fatelon.stocksplus.view.customviews.CustomTextView
+                            android:id="@+id/stock_detail_change"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:font_type="1"
+                            android:textSize="@dimen/signal_item_text_size"/>
+                    </LinearLayout>
+
+                </TableRow>
+            </TableLayout>
+
+
+            <LinearLayout
+                android:id="@+id/first_tool_background"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/edit_text_padding">
+
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:id="@+id/stock_detail_1d_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:textSize="@dimen/news_item_text_size"
+                    android:textColor="@color/whiteTextColor"
+                    android:gravity="center"
+                    android:background="@drawable/red_view_button_style_left"
+                    android:text="1D"
+                    app:font_type="2"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:id="@+id/stock_detail_5d_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:textSize="@dimen/news_item_text_size"
+                    android:gravity="center"
+                    android:textColor="@color/whiteTextColor"
+                    android:background="@drawable/red_view_button_style_normal"
+                    android:text="5D"
+                    app:font_type="2"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:id="@+id/stock_detail_1m_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:textSize="@dimen/news_item_text_size"
+                    android:gravity="center"
+                    android:textColor="@color/whiteTextColor"
+                    android:background="@drawable/red_view_button_style_normal"
+                    android:text="1M"
+                    app:font_type="2"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:id="@+id/stock_detail_3m_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:textSize="@dimen/news_item_text_size"
+                    android:gravity="center"
+                    android:textColor="@color/whiteTextColor"
+                    android:background="@drawable/red_view_button_style_normal"
+                    android:text="3M"
+                    app:font_type="2"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:id="@+id/stock_detail_6m_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:textSize="@dimen/news_item_text_size"
+                    android:gravity="center"
+                    android:textColor="@color/whiteTextColor"
+                    android:background="@drawable/red_view_button_style_normal"
+                    android:text="6M"
+                    app:font_type="2"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:id="@+id/stock_detail_1y_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:textSize="@dimen/news_item_text_size"
+                    android:gravity="center"
+                    android:textColor="@color/whiteTextColor"
+                    android:background="@drawable/red_view_button_style_normal"
+                    android:text="1Y"
+                    app:font_type="2"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:id="@+id/stock_detail_2y_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:textSize="@dimen/news_item_text_size"
+                    android:gravity="center"
+                    android:textColor="@color/whiteTextColor"
+                    android:background="@drawable/red_view_button_style_normal"
+                    android:text="2Y"
+                    app:font_type="2"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:id="@+id/stock_detail_5y_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:textSize="@dimen/news_item_text_size"
+                    android:gravity="center"
+                    android:textColor="@color/whiteTextColor"
+                    android:background="@drawable/red_view_button_style_right"
+                    android:text="5Y"
+                    app:font_type="2"/>
+            </LinearLayout>
+
+            <FrameLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/stock_chart_height"
+                android:layout_marginBottom="@dimen/edit_text_padding">
+                <ImageView
+                    android:id="@+id/yahoo_chart_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <FrameLayout
+                    android:id="@+id/stock_detail_chart_loading_indicator"
+                    android:layout_below="@+id/stock_detail_title"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.8"
+                        android:clickable="true"
+                        android:background="@color/black"/>
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                </FrameLayout>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:id="@+id/stock_detail_chart_type_line_button"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:paddingLeft="@dimen/edit_text_padding"
+                    android:paddingRight="@dimen/edit_text_padding"
+                    android:textSize="@dimen/news_item_text_size"
+                    android:textColor="@color/whiteTextColor"
+                    android:gravity="center"
+                    android:background="@drawable/red_view_button_style_left"
+                    android:text="Line"
+                    app:font_type="2"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:id="@+id/stock_detail_chart_type_candle_button"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:paddingLeft="@dimen/edit_text_padding"
+                    android:paddingRight="@dimen/edit_text_padding"
+                    android:textSize="@dimen/news_item_text_size"
+                    android:gravity="center"
+                    android:textColor="@color/whiteTextColor"
+                    android:background="@drawable/red_view_button_style_normal"
+                    android:text="Candle"
+                    app:font_type="2"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:id="@+id/stock_detail_chart_type_bar_button"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:paddingLeft="@dimen/edit_text_padding"
+                    android:paddingRight="@dimen/edit_text_padding"
+                    android:textSize="@dimen/news_item_text_size"
+                    android:gravity="center"
+                    android:textColor="@color/whiteTextColor"
+                    android:background="@drawable/red_view_button_style_right"
+                    android:text="Bar"
+                    app:font_type="2"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <FrameLayout
+        android:id="@+id/stock_detail_loading_indicator"
+        android:layout_below="@+id/stock_detail_title"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.8"
+            android:clickable="true"
+            android:background="@color/black"/>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+</RelativeLayout>

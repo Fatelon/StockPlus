@@ -32,6 +32,10 @@
         <activity android:name=".view.Settings"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity android:name=".view.DynamicChartActivity"
+            android:screenOrientation="landscape">
+        </activity>
     </application>
 
 </manifest>

@@ -36,7 +36,7 @@ public class CustomTextView extends TextView {
 
 
     private void init() {
-
+//        this.setTextColor(ContextCompat.getColor(getContext(), R.color.whiteTextColor));
     }
 
     private void applyCustomFont(Context context, AttributeSet attrs) {

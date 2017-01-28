@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/menu_tab_height"
+        android:background="@color/darkMenuBackground">
+        <ImageView
+            android:id="@+id/dynamic_chart_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/screen_side_padding"
+            android:paddingLeft="@dimen/screen_side_padding"
+            android:background="@mipmap/backbutton"/>
+        <com.fatelon.stocksplus.view.customviews.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/login_title_text_size"
+            android:textColor="@color/whiteTextColor"
+            android:text="@string/dynamic_chart_title"
+            app:font_type="4"/>
+        <com.fatelon.stocksplus.view.customviews.CustomTextView
+            android:id="@+id/dynamiv_chart_right_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/screen_side_padding"
+            android:textColor="@color/whiteTextColor"
+            android:textSize="@dimen/item_text_size"
+            android:text="@string/dynamic_chart_dynamic"
+            app:font_type="4"/>
+    </RelativeLayout>
+
+    <WebView
+        android:id="@+id/dynamic_chart_web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
