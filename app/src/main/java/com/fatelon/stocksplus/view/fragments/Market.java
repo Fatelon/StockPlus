@@ -217,7 +217,7 @@ public class Market extends BaseMenuFragment implements MyHorizontalViewCallBack
     }
 
     private void onClickSettingsButton(View v) {
-        startActivity(new Intent(context, Settings.class));
+        getActivity().startActivity(new Intent(getActivity(), Settings.class));
     }
 
     private void onClickCustomNewsItem(Integer itemNumber) {

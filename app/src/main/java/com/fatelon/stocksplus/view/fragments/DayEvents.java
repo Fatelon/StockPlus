@@ -241,9 +241,9 @@ public class DayEvents extends BaseFragment {
                 case 10: ivh.color.setBackgroundResource(R.color.colored_stripe_splits); break;
                 case 11: ivh.color.setBackgroundResource(R.color.colored_stripe_ipo); break;
             }
-            if (itemIndex == s.items.size() - 1) {
-                ivh.eventsListDivider.setVisibility(View.GONE);
-            }
+//            if (itemIndex == s.items.size() - 1) {
+//                ivh.eventsListDivider.setVisibility(View.GONE);
+//            }
 
             final String element = s.items.get(itemIndex).ticker;
             ivh.itemView.setOnClickListener(new View.OnClickListener() {

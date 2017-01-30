@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fatelon.stocksplus.R;
@@ -24,6 +25,8 @@ public class CustomMarketItem extends LinearLayout {
     private TextView marketItemName;
 
     private FrameLayout itemClickFlash;
+
+    private RelativeLayout background;
 
     public CustomMarketItem(Context context) {
         super(context);
@@ -42,11 +45,25 @@ public class CustomMarketItem extends LinearLayout {
         setAttr(context, attrs);
     }
 
+    public void setInstanceWithoutIcon() {
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        params.setMargins((int)getResources().getDimension(R.dimen.screen_side_padding), 0, 0, 0);
+        marketItemName.setLayoutParams(params);
+        marketItemIcon.setVisibility(GONE);
+    }
+
+    public void setBackground(int color) {
+        background.setBackgroundColor(color);
+    }
+
     private void init() {
         inflate(getContext(), R.layout.market_list_view, this);
         this.marketItemIcon = (ImageView)findViewById(R.id.market_item_icon);
         this.marketItemName = (TextView) findViewById(R.id.market_item_name_text);
         this.itemClickFlash = (FrameLayout) findViewById(R.id.item_click_flash);
+        background = (RelativeLayout) findViewById(R.id.market_list_view_background);
         this.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

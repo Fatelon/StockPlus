@@ -3,6 +3,8 @@ package com.fatelon.stocksplus.model.dto.stockinfo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Map;
+
 /**
  * Created by Fatelon on 28.01.2017.
  */
@@ -26,7 +28,8 @@ public class StockInfoDTO {
     private String companyName;
     @SerializedName("parameters_yahoo")
     @Expose
-    private ParametersYahooDTO parametersYahoo;
+    private Map<String, String> parametersYahoo;
+//    private ParametersYahooDTO parametersYahoo;
 
     public String getTicker() {
         return ticker;
@@ -68,12 +71,20 @@ public class StockInfoDTO {
         this.companyName = companyName;
     }
 
-    public ParametersYahooDTO getParametersYahoo() {
+    public Map<String, String> getParametersYahoo() {
         return parametersYahoo;
     }
 
-    public void setParametersYahoo(ParametersYahooDTO parametersYahoo) {
+    public void setParametersYahoo(Map<String, String> parametersYahoo) {
         this.parametersYahoo = parametersYahoo;
     }
+
+//    public ParametersYahooDTO getParametersYahoo() {
+//        return parametersYahoo;
+//    }
+//
+//    public void setParametersYahoo(ParametersYahooDTO parametersYahoo) {
+//        this.parametersYahoo = parametersYahoo;
+//    }
 
 }

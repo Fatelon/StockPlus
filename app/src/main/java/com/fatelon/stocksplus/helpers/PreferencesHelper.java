@@ -20,6 +20,10 @@ public class PreferencesHelper {
 
     private static final String KEY_USER_PASS = "user_pass";
 
+    private static final String KEY_FIRST_INDICATORS = "first_indicators";
+
+    private static final String KEY_SECOND_INDICATORS = "second_indicators";
+
     public static void storeIsUserLogin(Context context, boolean mark) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         preferences.edit().putBoolean(KEY_IS_USER_LOGIN, mark).apply();
@@ -68,5 +72,25 @@ public class PreferencesHelper {
     public static String getUserPass(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         return preferences.getString(KEY_USER_PASS, "");
+    }
+
+    public static void storeFirstIndicators(Context context, String indicators) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        preferences.edit().putString(KEY_FIRST_INDICATORS, indicators).apply();
+    }
+
+    public static String getFirstIndicators(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        return preferences.getString(KEY_FIRST_INDICATORS, "");
+    }
+
+    public static void storeSecondIndicators(Context context, String indicators) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        preferences.edit().putString(KEY_SECOND_INDICATORS, indicators).apply();
+    }
+
+    public static String getSecondIndicators(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        return preferences.getString(KEY_SECOND_INDICATORS, "");
     }
 }

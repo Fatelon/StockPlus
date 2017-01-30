@@ -109,4 +109,12 @@
     <string name="dynamic_chart_static">Static</string>
     <string name="dynamic_chart_dynamic">Interactive</string>
 
+    <!-- Indicators -->
+    <string name="first_group_indicators_title">First group indicators</string>
+    <string name="second_group_indicators_title">Second group indicators</string>
+    <string name="first_indicators_title_short">First group</string>
+    <string name="second_indicators_title_short">Second group</string>
+    <string name="first_section_indicators_title">Added</string>
+    <string name="second_section_indicators_title">All indicators</string>
+
 </resources>

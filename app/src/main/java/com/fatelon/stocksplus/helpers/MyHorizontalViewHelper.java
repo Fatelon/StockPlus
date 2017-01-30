@@ -125,8 +125,8 @@ public class MyHorizontalViewHelper implements PressBackCallBack {
 
     private void getScreenSize(Context context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        dpHeight = displayMetrics.heightPixels;// / displayMetrics.density;
-        dpWidth = displayMetrics.widthPixels; // displayMetrics.density;
+        dpHeight = displayMetrics.heightPixels;
+        dpWidth = displayMetrics.widthPixels;
     }
 
     @Override

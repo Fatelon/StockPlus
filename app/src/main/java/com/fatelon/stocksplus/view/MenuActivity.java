@@ -11,6 +11,7 @@ import com.fatelon.stocksplus.view.callbacks.PressBackCallBack;
 import com.fatelon.stocksplus.view.customviews.TabCustomButton;
 import com.fatelon.stocksplus.view.fragments.BaseFragmentActivity;
 import com.fatelon.stocksplus.view.fragments.DayEvents;
+import com.fatelon.stocksplus.view.fragments.IndicatorsFragment;
 import com.fatelon.stocksplus.view.fragments.Market;
 import com.fatelon.stocksplus.view.fragments.News;
 import com.fatelon.stocksplus.view.fragments.NewsesWebViewFragment;
@@ -184,6 +185,16 @@ import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
             Bundle args = new Bundle();
             args.putString("stock_name", param);
             stockDetailFragment.setArguments(args);
+            stockDetailFragment.getIndicatorsClicks().subscribe(new Action1<Integer>() {
+                @Override
+                public void call(Integer type) {
+                    IndicatorsFragment indicatorsFragment = new IndicatorsFragment();
+                    Bundle args = new Bundle();
+                    args.putInt("indicator_type", type);
+                    indicatorsFragment.setArguments(args);
+                    replaceFragment(indicatorsFragment, true, false);
+                }
+            });
             replaceFragment(stockDetailFragment, true, false);
         }
     }

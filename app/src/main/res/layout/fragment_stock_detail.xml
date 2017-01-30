@@ -181,7 +181,7 @@
             <FrameLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/stock_chart_height"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/edit_text_padding">
                 <ImageView
                     android:id="@+id/yahoo_chart_container"
@@ -192,7 +192,7 @@
                     android:layout_below="@+id/stock_detail_title"
                     android:visibility="gone"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="150dp">
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -249,6 +249,50 @@
                     android:text="Bar"
                     app:font_type="2"/>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/screen_side_padding"
+                android:orientation="vertical">
+
+                <com.fatelon.stocksplus.view.customviews.CustomMarketItem
+                    android:id="@+id/first_group_indicators"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:market_item_icon="@mipmap/top_gainers"
+                    app:market_item_name="@string/first_group_indicators_title"
+                    app:font_type="5"/>
+                <View android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lightGrayBackground"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomMarketItem
+                    android:id="@+id/second_group_indicators"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:market_item_icon="@mipmap/top_losers"
+                    app:market_item_name="@string/second_group_indicators_title"
+                    app:font_type="5"/>
+                <View android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lightGrayBackground"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+            </LinearLayout>
+
+            <TableLayout
+                android:id="@+id/stock_info_table"
+                android:background="@color/darkGrayBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/edit_text_padding"
+                android:layout_marginTop="@dimen/screen_side_padding"
+                />
+            <!--android:stretchColumns="*"-->
+
+
         </LinearLayout>
     </ScrollView>
     <FrameLayout

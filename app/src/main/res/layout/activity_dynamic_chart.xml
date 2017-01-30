@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/dynamic_chart_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/menu_tab_height"
         android:background="@color/darkMenuBackground">
@@ -27,7 +28,7 @@
             android:text="@string/dynamic_chart_title"
             app:font_type="4"/>
         <com.fatelon.stocksplus.view.customviews.CustomTextView
-            android:id="@+id/dynamiv_chart_right_text"
+            android:id="@+id/dynamic_chart_right_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -39,9 +40,22 @@
             app:font_type="4"/>
     </RelativeLayout>
 
-    <WebView
-        android:id="@+id/dynamic_chart_web_view"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <it.sephiroth.android.library.imagezoom.ImageViewTouch
+            android:background="@color/whiteTextColor"
+            android:id="@+id/dynamic_chart_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <WebView
+            android:id="@+id/dynamic_chart_web_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </FrameLayout>
 
 </LinearLayout>

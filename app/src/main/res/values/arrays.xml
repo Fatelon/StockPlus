@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="first_group_indicators_names">
+        <item>Moving Average 20</item>
+        <item>Moving Average 50</item>
+        <item>Exponential Moving Average 20</item>
+        <item>Exponential Moving Average 50</item>
+        <item>Volume</item>
+        <item>Bollniger Bands</item>
+        <item>Parabolic SAR</item>
+    </string-array>
+
+    <string-array name="second_group_indicators_names">
+        <item>MACD</item>
+        <item>MFI</item>
+        <item>ROC</item>
+        <item>RIS</item>
+        <item>Slow Stoch</item>
+        <item>Fast Stoch</item>
+        <item>Vol MA</item>
+        <item>WR</item>
+    </string-array>
+
+    <string-array name="first_group_indicators_short_names">
+        <item>m20</item>
+        <item>m50</item>
+        <item>e20</item>
+        <item>e50</item>
+        <item>v</item>
+        <item>b</item>
+        <item>p</item>
+    </string-array>
+
+    <string-array name="second_group_indicators_short_names">
+        <item>m</item>
+        <item>f</item>
+        <item>p</item>
+        <item>r</item>
+        <item>ss</item>
+        <item>fs</item>
+        <item>vm</item>
+        <item>w</item>
+    </string-array>
+
+</resources>

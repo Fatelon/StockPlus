@@ -12,8 +12,8 @@
     <color name="green">#91d85c</color>
 
     <color name="darkMenuBackground">#131313</color>
-    <color name="mainBackground">#252525</color>
     <color name="darkGrayBackground">#212121</color>
+    <color name="mainBackground">#252525</color>
     <color name="lightGrayBackground">#3f3f3f</color>
     <color name="whiteTextColor">#ffffff</color>
 
