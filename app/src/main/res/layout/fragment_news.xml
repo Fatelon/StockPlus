@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBackground">
 
@@ -24,5 +26,219 @@
             </TableRow>
         </TableLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/edit_text_padding"
+        android:background="@color/mainBackground"
+        android:gravity="center_vertical">
+        <LinearLayout
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/screen_side_padding"
+            android:layout_marginRight="@dimen/screen_side_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.fatelon.stocksplus.view.customviews.CustomTextView
+                android:id="@+id/news_day_button"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:paddingLeft="@dimen/edit_text_padding"
+                android:paddingRight="@dimen/edit_text_padding"
+                android:textSize="@dimen/news_item_text_size"
+                android:textColor="@color/whiteTextColor"
+                android:gravity="center"
+                android:background="@drawable/red_view_button_style_left"
+                android:text="Day"
+                app:font_type="2"/>
+            <com.fatelon.stocksplus.view.customviews.CustomTextView
+                android:id="@+id/news_month_button"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:paddingLeft="@dimen/edit_text_padding"
+                android:paddingRight="@dimen/edit_text_padding"
+                android:textSize="@dimen/news_item_text_size"
+                android:gravity="center"
+                android:textColor="@color/whiteTextColor"
+                android:background="@drawable/red_view_button_style_right"
+                android:text="Month"
+                app:font_type="2"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <View android:layout_width="@dimen/colored_stripe_width"
+                    android:layout_height="@dimen/colored_stripe_height"
+                    android:background="@color/colored_stripe_conference"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/market_item_conference_calls"
+                    android:textSize="@dimen/login_common_text_size"
+                    android:textColor="@color/whiteTextColor"
+                    app:font_type="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <View android:layout_width="@dimen/colored_stripe_width"
+                    android:layout_height="@dimen/colored_stripe_height"
+                    android:background="@color/colored_stripe_dividends"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/market_item_dividends"
+                    android:textSize="@dimen/login_common_text_size"
+                    android:textColor="@color/whiteTextColor"
+                    app:font_type="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <View android:layout_width="@dimen/colored_stripe_width"
+                    android:layout_height="@dimen/colored_stripe_height"
+                    android:background="@color/colored_stripe_earnings"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/market_item_earnings"
+                    android:textSize="@dimen/login_common_text_size"
+                    android:textColor="@color/whiteTextColor"
+                    app:font_type="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <View android:layout_width="@dimen/colored_stripe_width"
+                    android:layout_height="@dimen/colored_stripe_height"
+                    android:background="@color/colored_stripe_splits"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/market_item_splits"
+                    android:textSize="@dimen/login_common_text_size"
+                    android:textColor="@color/whiteTextColor"
+                    app:font_type="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <View android:layout_width="@dimen/colored_stripe_width"
+                    android:layout_height="@dimen/colored_stripe_height"
+                    android:background="@color/colored_stripe_ipo"
+                    android:layout_marginLeft="@dimen/screen_side_padding"
+                    android:layout_marginRight="@dimen/screen_side_padding"/>
+                <com.fatelon.stocksplus.view.customviews.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/market_item_ipo"
+                    android:textSize="@dimen/login_common_text_size"
+                    android:textColor="@color/whiteTextColor"
+                    app:font_type="1"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/mainBackground">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/news_fragment_recycle_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <GridView
+            android:visibility="gone"
+            android:id="@+id/new_fragment_calendar_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="7"/>
+
+        <FrameLayout
+            android:id="@+id/news_calendar_loading_indicator"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.8"
+                android:clickable="true"
+                android:background="@color/black"/>
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+    </FrameLayout>
+
+    <com.fatelon.stocksplus.view.customviews.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkGrayBackground"
+        android:paddingLeft="@dimen/screen_side_padding"
+        android:paddingTop="@dimen/edit_text_padding"
+        android:paddingBottom="@dimen/edit_text_padding"
+        android:text="@string/tab_news"
+        android:textSize="@dimen/login_common_text_size"
+        android:textColor="@color/whiteTextColor"
+        app:font_type="5"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/news_fragment_news_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:transcriptMode="disabled"/>
+
+        <FrameLayout
+            android:id="@+id/news_fragment_news_loading_indicator"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.8"
+                android:clickable="true"
+                android:background="@color/black"/>
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+
+    </FrameLayout>
 
 </LinearLayout>

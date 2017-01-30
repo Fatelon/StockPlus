@@ -2,6 +2,7 @@ package com.fatelon.stocksplus.view.fragments;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,9 @@ import com.fatelon.stocksplus.view.customviews.CustomTitle;
 import com.fatelon.stocksplus.view.customviews.customRecyclerView.SectioningAdapter;
 import com.fatelon.stocksplus.view.customviews.customRecyclerView.StickyHeaderLayoutManager;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,7 +79,7 @@ public class DayEvents extends BaseFragment {
         recyclerView.setAdapter(customEventsListViewAdapter);
     }
 
-    private class DayEventsListViewAdapter extends SectioningAdapter {
+    public static class DayEventsListViewAdapter extends SectioningAdapter {
 
         private List<DayEventsListViewAdapter.Section> sections = new ArrayList<DayEventsListViewAdapter.Section>();
 
@@ -137,9 +140,26 @@ public class DayEvents extends BaseFragment {
         }
 
         public DayEventsListViewAdapter(String currentDay, Map<String, CalendarDTO> calendar) {
+            setNewCalendar(currentDay, calendar);
+        }
+
+        public void setNewCalendar(String currentDay, Map<String, CalendarDTO> calendar) {
             if (calendar != null) {
                 for (Map.Entry<String, CalendarDTO> entry : calendar.entrySet()) {
-                    if (entry != null && entry.getValue().getDt() == currentDay) {
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
+                    Date myDate1 = new Date();
+                    Date myDate2 = new Date();
+                    try {
+                        myDate1 = dateFormat.parse(entry.getValue().getDt());
+                        myDate2 = dateFormat.parse(currentDay);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                    String day1 = (String) DateFormat.format("dd", myDate1);
+                    String day2 = (String) DateFormat.format("dd", myDate2);
+                    if (entry != null && day1.equals(day2)) {
+//                    if (entry != null && entry.getValue().getDt() == currentDay) {
                         Section section = new Section("Conference Calls");
                         setCommonItems(8, section, entry.getValue().getConfcalls());
                         sections.add(section);

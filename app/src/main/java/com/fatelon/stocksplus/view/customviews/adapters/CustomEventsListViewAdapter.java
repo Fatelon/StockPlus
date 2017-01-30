@@ -1,4 +1,4 @@
-package com.fatelon.stocksplus.view.customviews;
+package com.fatelon.stocksplus.view.customviews.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,7 @@ import com.fatelon.stocksplus.model.dto.calendar.CalendarDTO;
 import com.fatelon.stocksplus.model.dto.calendar.CommonEventDTO;
 import com.fatelon.stocksplus.model.dto.calendar.DividentDTO;
 import com.fatelon.stocksplus.model.dto.calendar.EarningDTO;
+import com.fatelon.stocksplus.view.customviews.CustomTextView;
 import com.fatelon.stocksplus.view.customviews.customRecyclerView.SectioningAdapter;
 
 import java.text.SimpleDateFormat;
@@ -203,9 +204,9 @@ public class CustomEventsListViewAdapter extends SectioningAdapter {
             case 10: ivh.color.setBackgroundResource(R.color.colored_stripe_splits); break;
             case 11: ivh.color.setBackgroundResource(R.color.colored_stripe_ipo); break;
         }
-        if (itemIndex == s.items.size() - 1) {
-            ivh.eventsListDivider.setVisibility(View.GONE);
-        }
+//        if (itemIndex == s.items.size() - 1) {
+//            ivh.eventsListDivider.setVisibility(View.GONE);
+//        }
 
         final String element = s.items.get(itemIndex).ticker;
         ivh.itemView.setOnClickListener(new View.OnClickListener() {

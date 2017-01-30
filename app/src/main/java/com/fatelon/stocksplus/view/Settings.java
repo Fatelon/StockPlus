@@ -43,11 +43,10 @@ public class Settings extends FragmentActivity implements PressBackCallBack {
 
     private void onClickLogoutButton(View v) {
         PreferencesHelper.storeIsUserLogin(this, false);
-
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
         try {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
             if (MenuActivity.menuActivity != null) MenuActivity.menuActivity.finish();
         } catch (Exception ex) {
             ex.printStackTrace();

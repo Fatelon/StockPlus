@@ -8,10 +8,13 @@ import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -23,12 +26,17 @@ import com.fatelon.stocksplus.R;
 import com.fatelon.stocksplus.helpers.PreferencesHelper;
 import com.fatelon.stocksplus.model.api.ApiInterface;
 import com.fatelon.stocksplus.model.api.ApiModule;
+import com.fatelon.stocksplus.model.dto.news.NewsFinvizDTO;
+import com.fatelon.stocksplus.model.dto.news.StockNewsDTO;
 import com.fatelon.stocksplus.model.dto.stockinfo.StockInfoDTO;
 import com.fatelon.stocksplus.model.dto.stockinfo.StockInfoFirstResponseDTO;
 import com.fatelon.stocksplus.view.DynamicChartActivity;
+import com.fatelon.stocksplus.view.callbacks.PressBackCallBack;
+import com.fatelon.stocksplus.view.callbacks.SimpleDialogCallback;
 import com.fatelon.stocksplus.view.customviews.CustomMarketItem;
 import com.fatelon.stocksplus.view.customviews.CustomTextView;
 import com.fatelon.stocksplus.view.customviews.CustomTitle;
+import com.fatelon.stocksplus.view.customviews.adapters.NewsListViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +49,7 @@ import rx.schedulers.Schedulers;
 import rx.subjects.PublishSubject;
 
 import static com.fatelon.stocksplus.Constants.SERVER_MESSAGE_NO_ERROR;
+import static com.fatelon.stocksplus.view.dialogs.SimpleDialog.showSimpleDialogWithCallback;
 
 /**
  * Created by Fatelon on 26.01.2017.
@@ -51,6 +60,12 @@ public class StockDetailFragment extends BaseFragment {
     private static String TAG = StockDetailFragment.class.getSimpleName();
 
     private final PublishSubject<Integer> onClickIndicator = PublishSubject.create();
+    private final PublishSubject<String> onClickNews = PublishSubject.create();
+
+    private List<NewsFinvizDTO> newsData = new ArrayList<NewsFinvizDTO>();
+
+    private ListView newsList;
+    private NewsListViewAdapter newsListViewAdapter;
 
     private CustomTitle stockDetailTitle;
 
@@ -78,25 +93,17 @@ public class StockDetailFragment extends BaseFragment {
 
     private String currentStockName = "";
 
-//    @Override
-//    public void onSaveInstanceState(final Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        outState.putSerializable("list", (Serializable) myData);
-//    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_stock_detail, container, false);
         init(view);
 
         Bundle args = getArguments();
-//        if (args.getString("stock_name") != null) {
-//            currentStockName = args.getString("stock_name");
-//        }
         currentStockName = args.getString("stock_name");
         if (currentStockName != null) {
             stockName.setText(currentStockName);
             getStockInfo(currentStockName);
+            getStockNews(currentStockName);
         }
         return view;
     }
@@ -108,6 +115,10 @@ public class StockDetailFragment extends BaseFragment {
 
     public Observable<Integer> getIndicatorsClicks(){
         return onClickIndicator.asObservable();
+    }
+
+    public Observable<String> getNewsClicks(){
+        return onClickNews.asObservable();
     }
 
     private void init(View view) {
@@ -126,6 +137,25 @@ public class StockDetailFragment extends BaseFragment {
             b.putString("chart_url", getUrl());
             intent.putExtras(b);
             getActivity().startActivity(intent);
+        });
+
+        newsList = (ListView) view.findViewById(R.id.stock_detail_news_list_view);
+        newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                onClickNews.onNext(newsListViewAdapter.getUrl(position));
+            }
+        });
+
+        newsData.add(new NewsFinvizDTO());
+        newsListViewAdapter = new NewsListViewAdapter(context, R.layout.custom_news_item_view, newsData);
+        newsList.setAdapter(newsListViewAdapter);
+        newsList.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
         });
 
         loadingIndicator = (FrameLayout) view.findViewById(R.id.stock_detail_loading_indicator);
@@ -221,21 +251,6 @@ public class StockDetailFragment extends BaseFragment {
                     }
                 })
                 .into(yahooChartContainer);
-
-//        Picasso.with(context)
-//                .load(url)
-//                .crossFade()
-//                .into(yahooChartContainer, new com.squareup.picasso.Callback() {
-//                    @Override
-//                    public void onSuccess() {
-//                        chartLoadingIndicator.setVisibility(View.GONE);
-//                    }
-//
-//           sequence         @Override
-//                    public void onError() {
-//                        chartLoadingIndicator.setVisibility(View.GONE);
-//                    }
-//                });
     }
 
     private String getUrl() {
@@ -252,8 +267,6 @@ public class StockDetailFragment extends BaseFragment {
                 "&z=" + chartSize +
                 "&p=" + getFirstIndicators() +
                 "&a=" + getSecondIndicators();
-
-
         return url;
     }
 
@@ -357,6 +370,14 @@ public class StockDetailFragment extends BaseFragment {
                     public void onError(Throwable e) {
                         loadingIndicator.setVisibility(View.GONE);
                         Log.d(TAG, "error - " + e.toString());
+                        String title = context.getResources().getString(R.string.forgot_pass_error_title);
+                        String message = context.getResources().getString(R.string.forgot_pass_error_message);
+                        showSimpleDialogWithCallback(context, title, message, new SimpleDialogCallback() {
+                            @Override
+                            public void simpleDialogReaction() {
+                                ((PressBackCallBack)context).onPressBack();
+                            }
+                        });
                     }
 
                     @Override
@@ -374,6 +395,35 @@ public class StockDetailFragment extends BaseFragment {
                                 loadNewChart();
                             }
                             loadingIndicator.setVisibility(View.GONE);
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+    private void getStockNews(String ticker) {
+        ApiInterface apiInterface = ApiModule.getApiInterface();
+        apiInterface.getStockNews(ticker).subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).
+                subscribe(new Subscriber<StockNewsDTO>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.d(TAG, "onCompleted");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "error - " + e.toString());
+                    }
+
+                    @Override
+                    public void onNext(StockNewsDTO news) {
+                        Log.d(TAG, "onNext - ");
+                        try {
+                            newsData.clear();
+                            newsData.addAll(news.getStock().getNewsFinviz());
+                            newsListViewAdapter.notifyDataSetChanged();
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }

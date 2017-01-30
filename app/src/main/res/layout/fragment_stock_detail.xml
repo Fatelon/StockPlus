@@ -292,6 +292,12 @@
                 />
             <!--android:stretchColumns="*"-->
 
+            <ListView
+                android:id="@+id/stock_detail_news_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="@dimen/screen_side_padding"
+                android:transcriptMode="disabled"/>
 
         </LinearLayout>
     </ScrollView>

@@ -11,13 +11,13 @@ public class OneNewsDTO {
 
     @SerializedName("title")
     @Expose
-    private String title;
+    private String title = "";
     @SerializedName("time")
     @Expose
-    private String time;
+    private String time = "";
     @SerializedName("url")
     @Expose
-    private String url;
+    private String url = "";
 
     public String getTitle() {
         return title;

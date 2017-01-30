@@ -19,8 +19,8 @@ import com.fatelon.stocksplus.model.dto.calendar.CalendarDTO;
 import com.fatelon.stocksplus.model.dto.signals.OneSignalDTO;
 import com.fatelon.stocksplus.model.dto.signals.SignalsDTO;
 import com.fatelon.stocksplus.view.callbacks.OpenNewFragmentCallBack;
-import com.fatelon.stocksplus.view.customviews.CustomEventsListViewAdapter;
-import com.fatelon.stocksplus.view.customviews.CustomSplitListViewAdapter;
+import com.fatelon.stocksplus.view.customviews.adapters.CustomEventsListViewAdapter;
+import com.fatelon.stocksplus.view.customviews.adapters.CustomSplitListViewAdapter;
 import com.fatelon.stocksplus.view.customviews.CustomTitle;
 import com.fatelon.stocksplus.view.customviews.customRecyclerView.StickyHeaderLayoutManager;
 

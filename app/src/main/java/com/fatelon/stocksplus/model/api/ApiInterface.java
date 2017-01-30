@@ -1,6 +1,7 @@
 package com.fatelon.stocksplus.model.api;
 
 import com.fatelon.stocksplus.model.dto.calendar.WeekCalendarDTO;
+import com.fatelon.stocksplus.model.dto.news.StockNewsDTO;
 import com.fatelon.stocksplus.model.dto.quotes.AddNewQuoteDTO;
 import com.fatelon.stocksplus.model.dto.indexes.IndexesDTO;
 import com.fatelon.stocksplus.model.dto.LoginDTO;
@@ -46,6 +47,9 @@ public interface ApiInterface {
     @GET("?action=get_news_list")
     Observable<NewsDTO> getNews(@Query("limit") Integer limit);
 
+    @GET("?action=get_stock_info1")
+    Observable<StockNewsDTO> getStockNews(@Query("ticker") String ticker);
+
     @GET("?action=get_user_data&filter=quotes")
     Observable<UserDataDTO> getUserData(@Query("user_id") Integer userId);
 
@@ -58,6 +62,9 @@ public interface ApiInterface {
 
     @GET("?action=current_week_calendar")
     Observable<WeekCalendarDTO> getWeekCalendar();
+
+    @GET("?action=current_week_calendar&period=current_month")
+    Observable<WeekCalendarDTO> getMonthCalendar();
 
     @GET("?action=get_stock_info")
     Observable<StockInfoFirstResponseDTO> getStockInfo(@Query("ticker") String ticker);

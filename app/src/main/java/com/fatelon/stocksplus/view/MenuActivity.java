@@ -136,6 +136,22 @@ import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
     private void tabNewsButtonClick(View v) {
         v.setClickable(false);
         if (newsFrag == null) newsFrag = new News();
+        newsFrag.getEventClick().subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                openNewFragmentWithString(STOCK_DETAIL_TRIGGER, s);
+            }
+        });
+        newsFrag.getNewsClicks().subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                NewsesWebViewFragment newsesWebViewFragment = new NewsesWebViewFragment();
+                Bundle args = new Bundle();
+                args.putString("url", s);
+                newsesWebViewFragment.setArguments(args);
+                replaceFragment(newsesWebViewFragment, false, false);
+            }
+        });
         replaceFragment(newsFrag, !tabMarketButton.isClickable(), false);
         setBlue((TabCustomButton)v);
     }
@@ -193,6 +209,16 @@ import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
                     args.putInt("indicator_type", type);
                     indicatorsFragment.setArguments(args);
                     replaceFragment(indicatorsFragment, true, false);
+                }
+            });
+            stockDetailFragment.getNewsClicks().subscribe(new Action1<String>() {
+                @Override
+                public void call(String s) {
+                    NewsesWebViewFragment newsesWebViewFragment = new NewsesWebViewFragment();
+                    Bundle args = new Bundle();
+                    args.putString("url", s);
+                    newsesWebViewFragment.setArguments(args);
+                    replaceFragment(newsesWebViewFragment, true, false);
                 }
             });
             replaceFragment(stockDetailFragment, true, false);

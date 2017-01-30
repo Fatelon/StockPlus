@@ -1,4 +1,4 @@
-package com.fatelon.stocksplus.view.customviews;
+package com.fatelon.stocksplus.view.customviews.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 
 import com.fatelon.stocksplus.R;
 import com.fatelon.stocksplus.model.dto.signals.OneSignalDTO;
+import com.fatelon.stocksplus.view.customviews.CustomTextView;
 
 import java.util.List;
 

@@ -10,12 +10,9 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.fatelon.stocksplus.R;
 import com.fatelon.stocksplus.view.customviews.CustomTextView;
+import com.squareup.picasso.Picasso;
 
 import it.sephiroth.android.library.imagezoom.ImageViewTouch;
 import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
@@ -64,7 +61,13 @@ public class DynamicChartActivity extends FragmentActivity {
         dynamicChartWebView.setWebChromeClient(new WebChromeClient());
         dynamicChartWebView.getSettings().setJavaScriptEnabled(true);
         dynamicChartBackButton = (ImageView) findViewById(R.id.dynamic_chart_back_button);
-        dynamicChartBackButton.setOnClickListener(v -> finish());
+        dynamicChartBackButton.setOnClickListener(v -> {
+            try {
+                finish();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
         dynamicChartView = (ImageViewTouch) findViewById(R.id.dynamic_chart_image_view);
         dynamicChartView.setDisplayType(ImageViewTouchBase.DisplayType.FIT_IF_BIGGER);
         changeModButton = (CustomTextView) findViewById(R.id.dynamic_chart_right_text);
@@ -77,19 +80,33 @@ public class DynamicChartActivity extends FragmentActivity {
             dynamicChartView.setVisibility(View.VISIBLE);
             dynamicChartWebView.setVisibility(View.GONE);
 
-            Glide.with(this)
-                    .load(chartUrl)
-                    .listener(new RequestListener<String, GlideDrawable>() {
-                        @Override
-                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                            return false;
-                        }
-                        @Override
-                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                            return false;
-                        }
-                    })
-                    .into(dynamicChartView);
+            Picasso.with(this)
+                .load(chartUrl)
+                .into(dynamicChartView, new com.squareup.picasso.Callback() {
+                    @Override
+                    public void onSuccess() {
+//                        chartLoadingIndicator.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError() {
+//                        chartLoadingIndicator.setVisibility(View.GONE);
+                    }
+                });
+
+//            Glide.with(this)
+//                    .load(chartUrl)
+//                    .listener(new RequestListener<String, GlideDrawable>() {
+//                        @Override
+//                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+//                            return false;
+//                        }
+//                        @Override
+//                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+//                            return false;
+//                        }
+//                    })
+//                    .into(dynamicChartView);
 
         } else {
             changeModButton.setText(getResources().getString(R.string.dynamic_chart_static));
