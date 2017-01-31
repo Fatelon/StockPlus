@@ -1,14 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBackground">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/menu_tab_height"
-        android:background="@color/darkMenuBackground">
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_tab_height"
+            android:background="@color/darkMenuBackground">
 
+            <ImageView
+                android:id="@+id/add_new_watchlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="@dimen/screen_side_padding"
+                android:paddingTop="@dimen/edit_text_padding"
+                android:paddingBottom="@dimen/edit_text_padding"
+                android:paddingRight="@dimen/screen_side_padding"
+                android:src="@mipmap/add_w_list"/>
+
+            <com.fatelon.stocksplus.view.customviews.CustomTextView
+                android:id="@+id/edit_watch_list_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/add_new_watchlist"
+                android:textColor="@color/whiteTextColor"
+                android:text="@string/tab_edit"
+                android:textSize="@dimen/signal_item_text_size"
+                app:font_type="4"/>
+
+            <com.fatelon.stocksplus.view.customviews.CustomTextView
+                android:id="@+id/watch_lists_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/whiteTextColor"
+                android:text="@string/watchlists_no_lists"
+                android:textSize="@dimen/item_text_size"
+                app:font_type="1"/>
+
+            <ImageView
+                android:id="@+id/select_list_watchlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/add_stock_watchlist"
+                android:paddingLeft="@dimen/screen_side_padding"
+                android:paddingTop="@dimen/edit_text_padding"
+                android:paddingBottom="@dimen/edit_text_padding"
+                android:paddingRight="@dimen/screen_side_padding"
+                android:src="@mipmap/select_list_w_list"/>
+
+            <ImageView
+                android:id="@+id/add_stock_watchlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:paddingLeft="@dimen/screen_side_padding"
+                android:paddingTop="@dimen/edit_text_padding"
+                android:paddingBottom="@dimen/edit_text_padding"
+                android:paddingRight="@dimen/screen_side_padding"
+                android:src="@mipmap/add_stock_w_list"/>
+        </RelativeLayout>
     </LinearLayout>
 
-</LinearLayout>
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/watch_lists_loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.7"
+            android:clickable="true"
+            android:background="@color/black"/>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+</FrameLayout>

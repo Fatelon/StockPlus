@@ -25,4 +25,43 @@
         </TableLayout>
     </LinearLayout>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.SearchView
+                android:id="@+id/my_search_view"
+                android:layout_alignParentRight="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/darkGrayBackground"/>
+            <ListView
+                android:id="@+id/search_answer_list_view"
+                android:layout_below="@+id/my_search_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </RelativeLayout>
+        <FrameLayout
+            android:id="@+id/search_loading_indicator"
+            android:layout_below="@+id/stock_detail_title"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.8"
+                android:clickable="true"
+                android:background="@color/black"/>
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+    </FrameLayout>
+
+
+
 </LinearLayout>

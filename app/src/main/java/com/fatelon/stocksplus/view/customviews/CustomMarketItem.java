@@ -10,7 +10,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.fatelon.stocksplus.R;
 
@@ -22,7 +21,7 @@ public class CustomMarketItem extends LinearLayout {
 
     private ImageView marketItemIcon;
 
-    private TextView marketItemName;
+    private CustomTextView marketItemName;
 
     private FrameLayout itemClickFlash;
 
@@ -61,7 +60,7 @@ public class CustomMarketItem extends LinearLayout {
     private void init() {
         inflate(getContext(), R.layout.market_list_view, this);
         this.marketItemIcon = (ImageView)findViewById(R.id.market_item_icon);
-        this.marketItemName = (TextView) findViewById(R.id.market_item_name_text);
+        this.marketItemName = (CustomTextView) findViewById(R.id.market_item_name_text);
         this.itemClickFlash = (FrameLayout) findViewById(R.id.item_click_flash);
         background = (RelativeLayout) findViewById(R.id.market_list_view_background);
         this.setOnTouchListener(new OnTouchListener() {

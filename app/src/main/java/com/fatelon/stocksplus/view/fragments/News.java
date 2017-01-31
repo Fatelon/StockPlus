@@ -13,11 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import com.fatelon.stocksplus.R;
 import com.fatelon.stocksplus.model.api.ApiInterface;
@@ -26,6 +25,7 @@ import com.fatelon.stocksplus.model.dto.calendar.CalendarDTO;
 import com.fatelon.stocksplus.model.dto.calendar.WeekCalendarDTO;
 import com.fatelon.stocksplus.model.dto.news.NewsDTO;
 import com.fatelon.stocksplus.model.dto.news.OneNewsDTO;
+import com.fatelon.stocksplus.view.customviews.CustomCalendarBox;
 import com.fatelon.stocksplus.view.customviews.CustomTextView;
 import com.fatelon.stocksplus.view.customviews.customRecyclerView.StickyHeaderLayoutManager;
 
@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -60,7 +61,7 @@ public class News extends BaseMenuFragment {
 
     private final PublishSubject<String> onClickNews = PublishSubject.create();
 
-    private Map<String, CalendarDTO> calendar;
+    private Map<String, CalendarDTO> calendar = new TreeMap<String, CalendarDTO>();
 
     private RecyclerView recyclerView;
 
@@ -74,7 +75,9 @@ public class News extends BaseMenuFragment {
     private OneNewsListViewAdapter newsListViewAdapter;
     private List<OneNewsDTO> newsData = new ArrayList<OneNewsDTO>();
 
-    private GridView calendarView;
+    private CustomCalendarBox calendarView;
+
+    private ScrollView calendarBoxScrollView;
 
     private String currentDay = "";
 
@@ -117,7 +120,16 @@ public class News extends BaseMenuFragment {
         newsMonthButton.setOnClickListener(v->{changeCalendarType();});
         makeButtonRed(newsDayButton);
         makeButtonBlack(newsMonthButton);
-        calendarView = (GridView) view.findViewById(R.id.new_fragment_calendar_view);
+
+        calendarView = (CustomCalendarBox) view.findViewById(R.id.news_custom_calendar_box);
+        calendarView.getDayCalendarBoxesClick().subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                currentDay = s;
+                changeCalendarType();
+            }
+        });
+        calendarBoxScrollView = (ScrollView) view.findViewById(R.id.new_calendar_box_scroll_view);
 
         newsData.add(new OneNewsDTO());
         newsListViewAdapter = new OneNewsListViewAdapter(context, R.layout.custom_news_item_view, newsData);
@@ -166,15 +178,13 @@ public class News extends BaseMenuFragment {
     private void setCalendar() {
         if (calendarTypeDay) {
             recyclerView.setVisibility(View.VISIBLE);
-            calendarView.setVisibility(View.GONE);
+            calendarBoxScrollView.setVisibility(View.GONE);
             customEventsListViewAdapter.setNewCalendar(currentDay, calendar);
-            customEventsListViewAdapter.notifyAllSectionsDataSetChanged();
+//            customEventsListViewAdapter.notifyAllSectionsDataSetChanged();
             calendarLoadingIndicator.setVisibility(View.GONE);
         } else {
-            calendarView.setVisibility(View.VISIBLE);
+            calendarBoxScrollView.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
-            calendarLoadingIndicator.setVisibility(View.VISIBLE);
-
         }
     }
 
@@ -198,8 +208,10 @@ public class News extends BaseMenuFragment {
                     public void onNext(WeekCalendarDTO response) {
                         Log.d(TAG, "onNext - ");
                         try {
-                            calendar = response.getCalendar();
+                            calendar.clear();
+                            calendar.putAll(response.getCalendar());
                             setCalendar();
+                            calendarView.setDates(calendar, true);
                             calendarLoadingIndicator.setVisibility(View.GONE);
                         } catch (Exception ex) {
                             ex.printStackTrace();
@@ -237,35 +249,6 @@ public class News extends BaseMenuFragment {
                         }
                     }
                 });
-    }
-
-    public class CalendarAdapter extends BaseAdapter {
-
-        private Context mContext;
-
-        private Map<String, CalendarDTO> calendarData;
-
-        public CalendarAdapter(Context c) {
-            mContext = c;
-        }
-
-        public int getCount() {
-            return calendarData.size();
-        }
-
-        public Object getItem(int position) {
-            return null;
-        }
-
-        public long getItemId(int position) {
-            return position;
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View view = convertView;
-
-            return view;
-        }
     }
 
     public class OneNewsListViewAdapter extends ArrayAdapter<OneNewsDTO> {

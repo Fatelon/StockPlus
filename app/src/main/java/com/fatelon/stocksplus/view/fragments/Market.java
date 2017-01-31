@@ -463,7 +463,7 @@ public class Market extends BaseMenuFragment implements MyHorizontalViewCallBack
                         Log.d(TAG, "onNext - ");
                         try {
                             calendar = response.getCalendar();
-                            marketCustomCalendarBox.setDates(calendar);
+                            marketCustomCalendarBox.setDates(calendar, false);
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }

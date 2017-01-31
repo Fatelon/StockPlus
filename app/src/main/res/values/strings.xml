@@ -49,6 +49,9 @@
         <!-- Login API -->
     <string name="user_name">username</string>
     <string name="user_password">password</string>
+
+    <string name="simple_name">name</string>
+
         <!-- Registration API -->
     <string name="f_name">fname</string>
     <string name="l_name">lname</string>
@@ -76,6 +79,16 @@
     <!-- Settings -->
     <string name="settings_title">Settings</string>
     <string name="settings_logout">Logout</string>
+    <string name="settings_notifications_title">NOTIFICATIONS</string>
+    <string name="settings_notifications_title_push">PUSH NOTIFICATIONS</string>
+    <string name="settings_item_portfolio">Portfolio summary</string>
+    <string name="settings_item_conf_call">Conference calls</string>
+    <string name="settings_item_dividends">Dividends</string>
+    <string name="settings_item_earnings">Earnings</string>
+    <string name="settings_item_licence">Licence Agreement</string>
+    <string name="settings_item_about">About us</string>
+    <string name="settings_item_email">Email us</string>
+    <string name="settings_item_rate">Rate app</string>
 
     <!-- Market -->
     <string name="market_sub_title_signals">Signals</string>
@@ -116,5 +129,12 @@
     <string name="second_indicators_title_short">Second group</string>
     <string name="first_section_indicators_title">Added</string>
     <string name="second_section_indicators_title">All indicators</string>
+
+    <!-- Watchlists -->
+    <string name="watchlists_add_new_title">Add new list</string>
+    <string name="watchlists_add_new_dialog_hint">Enter list name</string>
+    <string name="watchlists_no_lists">No lists</string>
+    <string name="watchlists_add_new_stock_title">Add new stock</string>
+    <string name="watchlists_add_new_stock_dialog_hint">Enter ticker</string>
 
 </resources>

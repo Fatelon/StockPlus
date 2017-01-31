@@ -17,40 +17,30 @@
         android:id="@+id/day_calendar_stripe_1"
         android:layout_width="@dimen/colored_stripe_width"
         android:layout_height="@dimen/colored_stripe_height"
-        android:background="@color/colored_stripe_conference"
-        android:layout_marginLeft="@dimen/screen_side_padding"
-        android:layout_marginRight="@dimen/screen_side_padding"/>
+        android:background="@color/colored_stripe_conference"/>
 
     <View android:visibility="gone"
         android:id="@+id/day_calendar_stripe_2"
         android:layout_width="@dimen/colored_stripe_width"
         android:layout_height="@dimen/colored_stripe_height"
-        android:background="@color/colored_stripe_dividends"
-        android:layout_marginLeft="@dimen/screen_side_padding"
-        android:layout_marginRight="@dimen/screen_side_padding"/>
+        android:background="@color/colored_stripe_dividends"/>
 
     <View android:visibility="gone"
         android:id="@+id/day_calendar_stripe_3"
         android:layout_width="@dimen/colored_stripe_width"
         android:layout_height="@dimen/colored_stripe_height"
-        android:background="@color/colored_stripe_earnings"
-        android:layout_marginLeft="@dimen/screen_side_padding"
-        android:layout_marginRight="@dimen/screen_side_padding"/>
+        android:background="@color/colored_stripe_earnings"/>
 
     <View android:visibility="gone"
         android:id="@+id/day_calendar_stripe_4"
         android:layout_width="@dimen/colored_stripe_width"
         android:layout_height="@dimen/colored_stripe_height"
-        android:background="@color/colored_stripe_splits"
-        android:layout_marginLeft="@dimen/screen_side_padding"
-        android:layout_marginRight="@dimen/screen_side_padding"/>
+        android:background="@color/colored_stripe_splits"/>
 
     <View android:visibility="invisible"
         android:id="@+id/day_calendar_stripe_5"
         android:layout_width="@dimen/colored_stripe_width"
         android:layout_height="@dimen/colored_stripe_height"
-        android:background="@color/colored_stripe_ipo"
-        android:layout_marginLeft="@dimen/screen_side_padding"
-        android:layout_marginRight="@dimen/screen_side_padding"/>
+        android:background="@color/colored_stripe_ipo"/>
 
 </LinearLayout>

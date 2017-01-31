@@ -1,15 +1,18 @@
 package com.fatelon.stocksplus.model.api;
 
+import com.fatelon.stocksplus.model.dto.LoginDTO;
+import com.fatelon.stocksplus.model.dto.RegistrationDTO;
 import com.fatelon.stocksplus.model.dto.calendar.WeekCalendarDTO;
+import com.fatelon.stocksplus.model.dto.indexes.IndexesDTO;
+import com.fatelon.stocksplus.model.dto.news.NewsDTO;
 import com.fatelon.stocksplus.model.dto.news.StockNewsDTO;
 import com.fatelon.stocksplus.model.dto.quotes.AddNewQuoteDTO;
-import com.fatelon.stocksplus.model.dto.indexes.IndexesDTO;
-import com.fatelon.stocksplus.model.dto.LoginDTO;
-import com.fatelon.stocksplus.model.dto.news.NewsDTO;
-import com.fatelon.stocksplus.model.dto.RegistrationDTO;
-import com.fatelon.stocksplus.model.dto.signals.SignalsDTO;
 import com.fatelon.stocksplus.model.dto.quotes.UserDataDTO;
+import com.fatelon.stocksplus.model.dto.search.StockSearchDTO;
+import com.fatelon.stocksplus.model.dto.signals.SignalsDTO;
 import com.fatelon.stocksplus.model.dto.stockinfo.StockInfoFirstResponseDTO;
+import com.fatelon.stocksplus.model.dto.watchlists.AddWatchlistDTO;
+import com.fatelon.stocksplus.model.dto.watchlists.GetWatchListsDTO;
 
 import java.util.Map;
 
@@ -68,4 +71,14 @@ public interface ApiInterface {
 
     @GET("?action=get_stock_info")
     Observable<StockInfoFirstResponseDTO> getStockInfo(@Query("ticker") String ticker);
+
+    @GET("?action=stock_search")
+    Observable<StockSearchDTO> getStockSearch(@Query("s") String stockName);
+
+    @FormUrlEncoded
+    @POST("?action=add_logged_user_watchlist")
+    Observable<AddWatchlistDTO> postNewWatchList(@FieldMap Map<String, String> params, @Query("PHPSESSID") String session_id);
+
+    @GET("?action=get_user_data&user_id=137&filter=watchlists")
+    Observable<GetWatchListsDTO> getWatchLists(@Query("user_id") Integer userId);
 }

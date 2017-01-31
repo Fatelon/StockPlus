@@ -31,7 +31,7 @@ import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
  * Created by Fatelon on 21.01.2017.
  */
 
-    public class MenuActivity extends BaseFragmentActivity implements OpenNewFragmentCallBack, PressBackCallBack {
+public class MenuActivity extends BaseFragmentActivity implements OpenNewFragmentCallBack, PressBackCallBack {
 
     public static Activity menuActivity;
 
@@ -82,12 +82,15 @@ import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
 
     private void tabMarketButtonClick(View v) {
         v.setClickable(false);
-        if (marketFrag == null) {
-            marketFrag = getNewMarketInstance();
-            replaceFragment(marketFrag, false, false);
-        } else {
-            popFragment();
-        }
+//        if (marketFrag == null) {
+//            marketFrag = getNewMarketInstance();
+//            replaceFragment(marketFrag, false, false);
+//        } else {
+//            popFragment();
+//        }
+
+        marketFrag = getNewMarketInstance();
+        replaceFragment(marketFrag, true, false);
         setBlue((TabCustomButton)v);
     }
 
@@ -114,32 +117,45 @@ import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
 
     private void tabPortfolioButtonClick(View v) {
         v.setClickable(false);
-        if (portfolioFrag == null) portfolioFrag = new Portfolio();
-        replaceFragment(portfolioFrag, !tabMarketButton.isClickable(), false);
+//        if (portfolioFrag == null) portfolioFrag = new Portfolio();
+        portfolioFrag = new Portfolio();
+//        replaceFragment(portfolioFrag, !tabMarketButton.isClickable(), false);
+        replaceFragment(portfolioFrag, true, false);
         setBlue((TabCustomButton)v);
     }
 
     private void tabWatchlistsButtonClick(View v) {
         v.setClickable(false);
-        if (watchlistsFrag == null) watchlistsFrag = new Watchlists();
-        replaceFragment(watchlistsFrag, !tabMarketButton.isClickable(), false);
+//        if (watchlistsFrag == null) watchlistsFrag = new Watchlists();
+        watchlistsFrag = new Watchlists();
+//        replaceFragment(watchlistsFrag, !tabMarketButton.isClickable(), false);
+        replaceFragment(watchlistsFrag, true, false);
         setBlue((TabCustomButton)v);
     }
 
     private void tabSearchButtonClick(View v) {
         v.setClickable(false);
-        if (searchFrag == null) searchFrag = new Search();
-        replaceFragment(searchFrag, !tabMarketButton.isClickable(), false);
+//        if (searchFrag == null) searchFrag = new Search();
+        searchFrag = new Search();
+        searchFrag.getSearchClicks().subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                openStockDetailFragment(true, s);
+            }
+        });
+//        replaceFragment(searchFrag, !tabMarketButton.isClickable(), false);
+        replaceFragment(searchFrag, true, false);
         setBlue((TabCustomButton)v);
     }
 
     private void tabNewsButtonClick(View v) {
         v.setClickable(false);
-        if (newsFrag == null) newsFrag = new News();
+//        if (newsFrag == null) newsFrag = new News();
+        newsFrag = new News();
         newsFrag.getEventClick().subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
-                openNewFragmentWithString(STOCK_DETAIL_TRIGGER, s);
+                openStockDetailFragment(true, s);
             }
         });
         newsFrag.getNewsClicks().subscribe(new Action1<String>() {
@@ -149,10 +165,11 @@ import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
                 Bundle args = new Bundle();
                 args.putString("url", s);
                 newsesWebViewFragment.setArguments(args);
-                replaceFragment(newsesWebViewFragment, false, false);
+                replaceFragment(newsesWebViewFragment, true, false);
             }
         });
-        replaceFragment(newsFrag, !tabMarketButton.isClickable(), false);
+//        replaceFragment(newsFrag, !tabMarketButton.isClickable(), false);
+        replaceFragment(newsFrag, true, false);
         setBlue((TabCustomButton)v);
     }
 
@@ -197,32 +214,36 @@ import static com.fatelon.stocksplus.Constants.STOCK_DETAIL_TRIGGER;
             newsesWebViewFragment.setArguments(args);
             replaceFragment(newsesWebViewFragment, true, false);
         } else if (number == STOCK_DETAIL_TRIGGER) {
-            StockDetailFragment stockDetailFragment = new StockDetailFragment();
-            Bundle args = new Bundle();
-            args.putString("stock_name", param);
-            stockDetailFragment.setArguments(args);
-            stockDetailFragment.getIndicatorsClicks().subscribe(new Action1<Integer>() {
-                @Override
-                public void call(Integer type) {
-                    IndicatorsFragment indicatorsFragment = new IndicatorsFragment();
-                    Bundle args = new Bundle();
-                    args.putInt("indicator_type", type);
-                    indicatorsFragment.setArguments(args);
-                    replaceFragment(indicatorsFragment, true, false);
-                }
-            });
-            stockDetailFragment.getNewsClicks().subscribe(new Action1<String>() {
-                @Override
-                public void call(String s) {
-                    NewsesWebViewFragment newsesWebViewFragment = new NewsesWebViewFragment();
-                    Bundle args = new Bundle();
-                    args.putString("url", s);
-                    newsesWebViewFragment.setArguments(args);
-                    replaceFragment(newsesWebViewFragment, true, false);
-                }
-            });
-            replaceFragment(stockDetailFragment, true, false);
+            openStockDetailFragment(true, param);
         }
+    }
+
+    private void openStockDetailFragment(final boolean addToBackstack, String param) {
+        StockDetailFragment stockDetailFragment = new StockDetailFragment();
+        Bundle args = new Bundle();
+        args.putString("stock_name", param);
+        stockDetailFragment.setArguments(args);
+        stockDetailFragment.getIndicatorsClicks().subscribe(new Action1<Integer>() {
+            @Override
+            public void call(Integer type) {
+                IndicatorsFragment indicatorsFragment = new IndicatorsFragment();
+                Bundle args = new Bundle();
+                args.putInt("indicator_type", type);
+                indicatorsFragment.setArguments(args);
+                replaceFragment(indicatorsFragment, addToBackstack, false);
+            }
+        });
+        stockDetailFragment.getNewsClicks().subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                NewsesWebViewFragment newsesWebViewFragment = new NewsesWebViewFragment();
+                Bundle args = new Bundle();
+                args.putString("url", s);
+                newsesWebViewFragment.setArguments(args);
+                replaceFragment(newsesWebViewFragment, addToBackstack, false);
+            }
+        });
+        replaceFragment(stockDetailFragment, addToBackstack, false);
     }
 
     @Override

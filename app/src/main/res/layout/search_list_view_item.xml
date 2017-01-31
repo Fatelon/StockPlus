@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/edit_text_padding">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/edit_text_padding"
+            android:layout_gravity="center_vertical">
+
+            <com.fatelon.stocksplus.view.customviews.CustomTextView
+                android:id="@+id/search_list_view_item_ticker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/whiteTextColor"
+                android:textSize="@dimen/item_text_size"
+                app:font_type="5"/>
+
+            <com.fatelon.stocksplus.view.customviews.CustomTextView
+                android:id="@+id/search_list_view_item_company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/whiteTextColor"
+                android:textSize="@dimen/menu_tab_text_size"
+                app:font_type="2"/>
+
+        </LinearLayout>
+
+        <com.fatelon.stocksplus.view.customviews.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_list_view_item_price"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:textColor="@color/whiteTextColor"
+            android:textSize="@dimen/signal_item_text_size"
+            app:font_type="5"/>
+
+        <LinearLayout
+            android:id="@+id/search_list_view_item_change_layout"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/search_list_view_item_change_image"
+            android:layout_centerVertical="true">
+
+            <com.fatelon.stocksplus.view.customviews.CustomTextView
+                android:id="@+id/search_list_view_item_change_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/whiteTextColor"
+                android:textSize="@dimen/signal_item_text_size"
+                app:font_type="5"/>
+
+            <com.fatelon.stocksplus.view.customviews.CustomTextView
+                android:id="@+id/search_list_view_item_change_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/whiteTextColor"
+                android:textSize="@dimen/signal_item_text_size"
+                app:font_type="2"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/search_list_view_item_change_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/edit_text_padding"
+            android:layout_marginLeft="@dimen/screen_side_padding"
+            android:layout_gravity="center_vertical"/>
+
+    </RelativeLayout>
+</LinearLayout>

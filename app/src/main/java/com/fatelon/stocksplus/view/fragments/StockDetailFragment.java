@@ -122,6 +122,10 @@ public class StockDetailFragment extends BaseFragment {
     }
 
     private void init(View view) {
+        newsData.add(new NewsFinvizDTO());
+        newsListViewAdapter = new NewsListViewAdapter(context, R.layout.custom_news_item_view, newsData);
+        newsList = (ListView) view.findViewById(R.id.stock_detail_news_list_view);
+        newsList.setAdapter(newsListViewAdapter);
         stockDetailTitle = (CustomTitle) view.findViewById(R.id.stock_detail_title);
         stockDetailTitle.setPressBackCallBack(context);
         stockName = (CustomTextView) view.findViewById(R.id.stock_detail_ticker);
@@ -139,7 +143,6 @@ public class StockDetailFragment extends BaseFragment {
             getActivity().startActivity(intent);
         });
 
-        newsList = (ListView) view.findViewById(R.id.stock_detail_news_list_view);
         newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -147,9 +150,6 @@ public class StockDetailFragment extends BaseFragment {
             }
         });
 
-        newsData.add(new NewsFinvizDTO());
-        newsListViewAdapter = new NewsListViewAdapter(context, R.layout.custom_news_item_view, newsData);
-        newsList.setAdapter(newsListViewAdapter);
         newsList.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

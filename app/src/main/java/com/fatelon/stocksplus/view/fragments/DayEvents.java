@@ -144,6 +144,7 @@ public class DayEvents extends BaseFragment {
         }
 
         public void setNewCalendar(String currentDay, Map<String, CalendarDTO> calendar) {
+            sections.clear();
             if (calendar != null) {
                 for (Map.Entry<String, CalendarDTO> entry : calendar.entrySet()) {
 
@@ -192,6 +193,7 @@ public class DayEvents extends BaseFragment {
                     }
                 }
             }
+            notifyAllSectionsDataSetChanged();
         }
 
         private void setCommonItems(int type, Section section, List<CommonEventDTO> comItems) {

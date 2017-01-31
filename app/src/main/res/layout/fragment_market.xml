@@ -17,7 +17,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:paddingLeft="@dimen/screen_double_side_padding"
-            android:textSize="@dimen/item_text_size"
+            android:textSize="@dimen/signal_item_text_size"
             android:textColor="@color/whiteTextColor"
             android:text="@string/tab_edit"
             app:font_type="4"/>
@@ -181,6 +181,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:clickable="true"
+                        android:alpha="0.7"
                         android:background="@color/mainBackground"/>
                     <ProgressBar
                         android:layout_width="wrap_content"
