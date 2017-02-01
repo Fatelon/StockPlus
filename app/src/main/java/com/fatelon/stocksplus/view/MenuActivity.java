@@ -128,6 +128,12 @@ public class MenuActivity extends BaseFragmentActivity implements OpenNewFragmen
         v.setClickable(false);
 //        if (watchlistsFrag == null) watchlistsFrag = new Watchlists();
         watchlistsFrag = new Watchlists();
+        watchlistsFrag.getNewsClicks().subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                openStockDetailFragment(true, s);
+            }
+        });
 //        replaceFragment(watchlistsFrag, !tabMarketButton.isClickable(), false);
         replaceFragment(watchlistsFrag, true, false);
         setBlue((TabCustomButton)v);

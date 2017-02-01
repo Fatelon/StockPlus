@@ -64,6 +64,12 @@
     <string name="signal_type_newlow">newlow</string>
     <string name="signal_type_unusualvolume">unusualvolume</string>
     <string name="signal_type_mostvolatile">mostvolatile</string>
+        <!-- watchLists -->
+    <string name="watch_lists_ticker_id">ticker_id</string>
+    <string name="watch_lists_ticker">ticker</string>
+    <string name="watch_lists_wl_id">wl_id</string>
+    <string name="watch_lists_no_watch_list_dialog_title">No watchlists</string>
+    <string name="watch_lists_no_watch_list_dialog_message">Please create and select watchlist</string>
 
     <!-- Tab -->
     <string name="tab_market">Market</string>
@@ -136,5 +142,6 @@
     <string name="watchlists_no_lists">No lists</string>
     <string name="watchlists_add_new_stock_title">Add new stock</string>
     <string name="watchlists_add_new_stock_dialog_hint">Enter ticker</string>
+    <string name="watchlists_delete">Delete</string>
 
 </resources>

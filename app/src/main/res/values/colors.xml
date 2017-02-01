@@ -7,7 +7,8 @@
     <color name="black">#000000</color>
     <color name="yellow">#e6ce00</color>
     <color name="blue">#698cff</color>
-    <color name="red">#ff6372</color>
+    <!--<color name="red">#ff6372</color>-->
+    <color name="red">#ff5656</color>
     <!--<color name="green">#76ff89</color>-->
     <color name="green">#91d85c</color>
 

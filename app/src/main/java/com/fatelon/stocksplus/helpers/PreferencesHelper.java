@@ -24,6 +24,8 @@ public class PreferencesHelper {
 
     private static final String KEY_SECOND_INDICATORS = "second_indicators";
 
+    private static final String KEY_CURRENT_WATCHLIST_ID = "current_watchlist_id";
+
     public static void storeIsUserLogin(Context context, boolean mark) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         preferences.edit().putBoolean(KEY_IS_USER_LOGIN, mark).apply();
@@ -92,5 +94,15 @@ public class PreferencesHelper {
     public static String getSecondIndicators(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         return preferences.getString(KEY_SECOND_INDICATORS, "");
+    }
+
+    public static void storeCurrentWatchlistId(Context context, String wlId) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        preferences.edit().putString(KEY_CURRENT_WATCHLIST_ID, wlId).apply();
+    }
+
+    public static String getCurrentWatchlistId(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        return preferences.getString(KEY_CURRENT_WATCHLIST_ID, "");
     }
 }

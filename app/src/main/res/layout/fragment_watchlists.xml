@@ -33,6 +33,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/add_new_watchlist"
+                android:paddingTop="@dimen/edit_text_padding"
+                android:paddingBottom="@dimen/edit_text_padding"
+                android:paddingRight="@dimen/screen_side_padding"
                 android:textColor="@color/whiteTextColor"
                 android:text="@string/tab_edit"
                 android:textSize="@dimen/signal_item_text_size"
@@ -45,8 +48,8 @@
                 android:layout_centerInParent="true"
                 android:textColor="@color/whiteTextColor"
                 android:text="@string/watchlists_no_lists"
-                android:textSize="@dimen/item_text_size"
-                app:font_type="1"/>
+                android:textSize="@dimen/login_title_text_size"
+                app:font_type="5"/>
 
             <ImageView
                 android:id="@+id/select_list_watchlist"
@@ -72,7 +75,13 @@
                 android:paddingRight="@dimen/screen_side_padding"
                 android:src="@mipmap/add_stock_w_list"/>
         </RelativeLayout>
+        <ListView
+            android:id="@+id/watch_lists_tickers_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
+
 
     <FrameLayout
         android:visibility="gone"

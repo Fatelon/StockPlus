@@ -12,6 +12,7 @@ import com.fatelon.stocksplus.model.dto.search.StockSearchDTO;
 import com.fatelon.stocksplus.model.dto.signals.SignalsDTO;
 import com.fatelon.stocksplus.model.dto.stockinfo.StockInfoFirstResponseDTO;
 import com.fatelon.stocksplus.model.dto.watchlists.AddWatchlistDTO;
+import com.fatelon.stocksplus.model.dto.watchlists.DeleteStockWLDTO;
 import com.fatelon.stocksplus.model.dto.watchlists.GetWatchListsDTO;
 
 import java.util.Map;
@@ -81,4 +82,14 @@ public interface ApiInterface {
 
     @GET("?action=get_user_data&user_id=137&filter=watchlists")
     Observable<GetWatchListsDTO> getWatchLists(@Query("user_id") Integer userId);
+
+    @FormUrlEncoded
+    @POST("?action=delete_logged_user_watchlist_ticker")
+    Observable<DeleteStockWLDTO> postDeleteStockFromWatchList(@FieldMap Map<String, String> params, @Query("PHPSESSID") String session_id);
+
+    //?action=add_logged_user_watchlist_ticker
+
+    @FormUrlEncoded
+    @POST("?action=add_logged_user_watchlist_ticker")
+    Observable<DeleteStockWLDTO> postAddStockFromWatchList(@FieldMap Map<String, String> params, @Query("PHPSESSID") String session_id);
 }

@@ -194,17 +194,19 @@ public class StockDetailFragment extends BaseFragment {
     }
 
     private void setInfoTable(Map<String, String> parametersYahooDTO) {
-        for (Map.Entry<String, String> entry : parametersYahooDTO.entrySet()) {
-            TableLayout.LayoutParams lp = new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
-            CustomTextView newTextLeft = getNewInfoText();
-            newTextLeft.setText(entry.getKey() + " : ");
-            CustomTextView newTextRight = getNewInfoText();
-            newTextRight.setText(entry.getValue());
-            TableRow newRow = new TableRow(context);
-            newRow.setLayoutParams(lp);
-            newRow.addView(newTextLeft);
-            newRow.addView(newTextRight);
-            stockInfoTable.addView(newRow);
+        if (parametersYahooDTO != null) {
+            for (Map.Entry<String, String> entry : parametersYahooDTO.entrySet()) {
+                TableLayout.LayoutParams lp = new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
+                CustomTextView newTextLeft = getNewInfoText();
+                newTextLeft.setText(entry.getKey() + " : ");
+                CustomTextView newTextRight = getNewInfoText();
+                newTextRight.setText(entry.getValue());
+                TableRow newRow = new TableRow(context);
+                newRow.setLayoutParams(lp);
+                newRow.addView(newTextLeft);
+                newRow.addView(newTextRight);
+                stockInfoTable.addView(newRow);
+            }
         }
     }
 
@@ -341,7 +343,7 @@ public class StockDetailFragment extends BaseFragment {
     }
 
     private void setStockInfo(StockInfoDTO newInfo) {
-        if (newInfo != null) {
+        try {
             stockPrice.setText(newInfo.getPrice());
             companyName.setText(Html.fromHtml(newInfo.getCompanyName()));
             change.setText(newInfo.getChageNum() + "(" + newInfo.getChangePercent() + ")");
@@ -352,6 +354,8 @@ public class StockDetailFragment extends BaseFragment {
                 indicator.setBackgroundResource(R.mipmap.up_indicator);
                 change.setTextColor(ContextCompat.getColor(context, R.color.green));
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -394,10 +398,10 @@ public class StockDetailFragment extends BaseFragment {
                                 setInfoTable(response.getStock().getParametersYahoo());
                                 loadNewChart();
                             }
-                            loadingIndicator.setVisibility(View.GONE);
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }
+                        loadingIndicator.setVisibility(View.GONE);
                     }
                 });
     }
@@ -423,10 +427,11 @@ public class StockDetailFragment extends BaseFragment {
                         try {
                             newsData.clear();
                             newsData.addAll(news.getStock().getNewsFinviz());
-                            newsListViewAdapter.notifyDataSetChanged();
+//                            newsListViewAdapter.notifyDataSetChanged();
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }
+                        newsListViewAdapter.notifyDataSetChanged();
                     }
                 });
     }

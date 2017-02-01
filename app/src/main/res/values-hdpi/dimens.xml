@@ -39,4 +39,6 @@
 
     <dimen name="stock_chart_height">150dp</dimen>
 
+    <dimen name="list_view_item_big_height">65dp</dimen>
+
 </resources>

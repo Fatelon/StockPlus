@@ -18,6 +18,8 @@ public class Constants {
 
     public static final Integer NEWS_TEXT_MAX_LENGTH = 60;
 
+    public static final Integer TITLE_TEXT_MAX_LENGTH = 8;
+
     public static final Integer NEWS_ALL_LIMIT = 100;
 
 }
