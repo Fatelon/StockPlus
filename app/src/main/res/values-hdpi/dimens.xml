@@ -41,4 +41,7 @@
 
     <dimen name="list_view_item_big_height">65dp</dimen>
 
+
+    <dimen name="portfolio_item_big_height">120dp</dimen>
+
 </resources>

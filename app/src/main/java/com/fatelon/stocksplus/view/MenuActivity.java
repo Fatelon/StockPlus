@@ -20,6 +20,7 @@ import com.fatelon.stocksplus.view.fragments.Search;
 import com.fatelon.stocksplus.view.fragments.SignalsFragment;
 import com.fatelon.stocksplus.view.fragments.StockDetailFragment;
 import com.fatelon.stocksplus.view.fragments.Watchlists;
+import com.fatelon.stocksplus.view.fragments.WatchlistsList;
 
 import java.util.Map;
 
@@ -132,6 +133,19 @@ public class MenuActivity extends BaseFragmentActivity implements OpenNewFragmen
             @Override
             public void call(String s) {
                 openStockDetailFragment(true, s);
+            }
+        });
+        watchlistsFrag.getWLSelectButtonClicks().subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                WatchlistsList watchlistsList = new WatchlistsList();
+                watchlistsList.getWLBack().subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        onPressBack();
+                    }
+                });
+                replaceFragment(watchlistsList, true, false);
             }
         });
 //        replaceFragment(watchlistsFrag, !tabMarketButton.isClickable(), false);

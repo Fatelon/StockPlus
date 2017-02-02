@@ -144,4 +144,11 @@
     <string name="watchlists_add_new_stock_dialog_hint">Enter ticker</string>
     <string name="watchlists_delete">Delete</string>
 
+    <!-- Portfolio -->
+    <string name="portfolio_summary">Summary</string>
+    <string name="portfolio_add_dialog_title">Add new portfolio</string>
+    <string name="portfolio_add_dialog_message">Enter portfolio name</string>
+    <string name="portfolio_today_profit">Today Profit &amp; Loss</string>
+    <string name="portfolio_total_profit">Total Profit &amp; Loss</string>
+
 </resources>

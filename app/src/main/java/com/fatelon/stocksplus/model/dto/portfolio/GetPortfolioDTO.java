@@ -1,20 +1,22 @@
-package com.fatelon.stocksplus.model.dto.watchlists;
+package com.fatelon.stocksplus.model.dto.portfolio;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Map;
+
 /**
- * Created by Fatelon on 31.01.2017.
+ * Created by Fatelon on 02.02.2017.
  */
 
-public class AddWatchlistDTO {
+public class GetPortfolioDTO {
 
+    @SerializedName("portfolio")
+    @Expose
+    private Map<String, PortfolioDTO> portfolio;
     @SerializedName("error")
     @Expose
     private Integer error;
-    @SerializedName("watchlist_id")
-    @Expose
-    private String watchlistId;
     @SerializedName("session_id")
     @Expose
     private String sessionId;
@@ -25,20 +27,20 @@ public class AddWatchlistDTO {
     @Expose
     private Double executionTime;
 
+    public Map<String, PortfolioDTO> getPortfolio() {
+        return portfolio;
+    }
+
+    public void setPortfolio(Map<String, PortfolioDTO> portfolio) {
+        this.portfolio = portfolio;
+    }
+
     public Integer getError() {
         return error;
     }
 
     public void setError(Integer error) {
         this.error = error;
-    }
-
-    public String getWatchlistId() {
-        return watchlistId;
-    }
-
-    public void setWatchlistId(String watchlistId) {
-        this.watchlistId = watchlistId;
     }
 
     public String getSessionId() {

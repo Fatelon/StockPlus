@@ -53,6 +53,7 @@ public class Watchlists extends BaseMenuFragment {
     private static String TAG = Watchlists.class.getSimpleName();
 
     private final PublishSubject<String> onClickStock = PublishSubject.create();
+    private final PublishSubject<String> onClickWLSelectButton = PublishSubject.create();
 
     private  Map<String, WatchlistsDTO> watchlists = new HashMap<String, WatchlistsDTO>();
 
@@ -94,10 +95,15 @@ public class Watchlists extends BaseMenuFragment {
         return onClickStock.asObservable();
     }
 
+    public Observable<String> getWLSelectButtonClicks(){
+        return onClickWLSelectButton.asObservable();
+    }
+
     private void init(View view) {
         addNewWatchListButton = (ImageView) view.findViewById(R.id.add_new_watchlist);
         addNewWatchListButton.setOnClickListener(v->showAddWatchListDialogWithCallback(context, p -> addNewWatchListOnServer(p[0])));
         selectList = (ImageView) view.findViewById(R.id.select_list_watchlist);
+        selectList.setOnClickListener(v -> {onClickWLSelectButton.onNext("");});
         addStock = (ImageView) view.findViewById(R.id.add_stock_watchlist);
         addStock.setOnClickListener(v->showAddStockWatchListDialogWithCallback(context, p -> addNewStockOnServer(p[0], PreferencesHelper.getCurrentWatchlistId(context))));
         mainLoader = (FrameLayout) view.findViewById(R.id.watch_lists_loader);
@@ -122,7 +128,6 @@ public class Watchlists extends BaseMenuFragment {
 
     private void setCurrentWatchlist() {
         try {
-            tickersData.clear();
             String currentWatchlistId = PreferencesHelper.getCurrentWatchlistId(context);
             String name = "";
             if (watchlists.containsKey(currentWatchlistId)) {
@@ -150,11 +155,10 @@ public class Watchlists extends BaseMenuFragment {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        oneTickerListViewAdapter.setAppear(-1);
-        oneTickerListViewAdapter.notifyDataSetChanged();
     }
 
     private void addNewWatchListOnServer(String name) {
+        oneTickerListViewAdapter.setAppear(-1);
         mainLoader.setVisibility(View.VISIBLE);
         Map<String, String> m = new HashMap<>();
         m.put(context.getResources().getString(R.string.simple_name), name);
@@ -207,7 +211,10 @@ public class Watchlists extends BaseMenuFragment {
                     public void onNext(GetWatchListsDTO response) {
                         Log.d(TAG, "onNext - ");
                         try {
+                            tickersData.clear();
                             watchlists.clear();
+                            oneTickerListViewAdapter.setAppear(-1);
+                            oneTickerListViewAdapter.setAppear(-1);
                             if (response != null && response.getWatchlists() != null) {
                                 watchlists.putAll(response.getWatchlists());
                             }
@@ -216,13 +223,15 @@ public class Watchlists extends BaseMenuFragment {
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }
+
+                        oneTickerListViewAdapter.notifyDataSetChanged();
                         mainLoader.setVisibility(View.GONE);
                     }
                 });
     }
 
     private void addNewStockOnServer(String ticker, String wlId) {
-        if (ticker.equals("")) {
+        if (wlId.equals("")) {
             showSimpleDialog(context,
                     context.getResources().getString(R.string.watch_lists_no_watch_list_dialog_title),
                     context.getResources().getString(R.string.watch_lists_no_watch_list_dialog_message));
@@ -249,6 +258,12 @@ public class Watchlists extends BaseMenuFragment {
                         @Override
                         public void onNext(DeleteStockWLDTO response) {
                             Log.d(TAG, "onNext - ");
+                            tickersData.clear();
+                            watchlists.clear();
+                            oneTickerListViewAdapter.setAppear(-1);
+                            oneTickerListViewAdapter.setAppear(-1);
+
+                            oneTickerListViewAdapter.notifyDataSetChanged();
                             try {
                                 getUserWatchLists();
 //                            mainLoader.setVisibility(View.GONE);
@@ -309,8 +324,6 @@ public class Watchlists extends BaseMenuFragment {
         private Integer deleteAppear = -1;
         private Integer deleteDisappear = -1;
         private Integer widthShift = 0;
-
-        private CustomTextView deleteButton;
 
         public OneTickerListViewAdapter (Context context, int resource, List<OneTickerDTO> objects) {
             super(context, resource, objects);
@@ -381,23 +394,27 @@ public class Watchlists extends BaseMenuFragment {
                 LayoutInflater inflater = ((Activity) context).getLayoutInflater();
                 rowView = inflater.inflate(resource, null, true);
                 viewHolder = new ViewHolder();
+                rowView.setTag(viewHolder);
                 viewHolder.mainContainer = (RelativeLayout) rowView.findViewById(R.id.watch_list_one_ticker_l_v_main_cont);
+                viewHolder.mainContainer.setTag(position);
                 viewHolder.mainContainer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (addMinus) {
                             setAppear(-1);
                         } else {
-                            onClickStock.onNext(oneTickerListViewAdapter.getTicker(position));
+                            Integer pos = (Integer)v.getTag();
+                            onClickStock.onNext(oneTickerListViewAdapter.getTicker(pos));
                         }
                     }
                 });
                 viewHolder.mainContainer.getLayoutParams().width = (int) dpWidth;
                 viewHolder.minus = (ImageView) rowView.findViewById(R.id.watch_list_one_ticker_l_v_minus);
+                viewHolder.minus.setTag(position);
                 viewHolder.minus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        setAppear(position);
+                        setAppear((Integer)v.getTag());
                     }
                 });
                 viewHolder.tickerText = (CustomTextView) rowView.findViewById(R.id.watch_list_one_ticker_l_v_ticker);
